@@ -1,0 +1,34 @@
+.git
+.gitignore
+.vscode
+.idea
+
+# Node / frontend artifacts
+node_modules
+frontend/node_modules
+frontend/.next
+
+# Python / backend artifacts
+backend/.venv
+backend/venv
+backend/__pycache__
+backend/.pytest_cache
+backend/.mypy_cache
+
+# Agent dev artifacts
+agents/.venv
+agents/uv.lock
+
+# Data
+# Los datasets locales completos no deben entrar en el build context.
+# La generacion de informes define el blueprint por codigo
+# y solo recurre al corpus local cuando este existe en el entorno.
+dataset/
+expedientes/
+result/
+casos-a/
+
+# Misc
+*.log
+.env
+.DS_Store

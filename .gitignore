@@ -1,0 +1,88 @@
+# ==========================================
+# SYSTEM & OS
+# ==========================================
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.swp
+
+# ==========================================
+# IDEs & EDITORS
+# ==========================================
+# VS Code
+.vscode/*
+.vscode/extensions.json
+.vscode/settings.json
+.vscode/launch.json
+.history/
+*.code-workspace
+
+# JetBrains (PyCharm, WebStorm, etc.)
+.idea/
+
+# ==========================================
+# ENVIRONMENTS & SECRETS
+# ==========================================
+.env
+.env.local
+.env.*.local
+*.env
+!env.example
+
+# ==========================================
+# PYTHON (Backend)
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+*.deprecated
+
+# ==========================================
+# NODE / REACT (Frontend)
+# ==========================================
+node_modules/
+/build
+/dist
+.npm
+.eslintcache
+.stylelintcache
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# ==========================================
+# DOCKER & DEV CONTAINERS
+# ==========================================
+# Ignoramos los datos persistentes de los contenedores para no subir la DB
+.devcontainer/data/
+docker/volumes/
+ollama_data/
+postgres_data/
+minio_data/
+
+# ==========================================
+# DATABASE & STORAGE (Local)
+# ==========================================
+*.sql
+*.sqlite
+*.db
+storage/
+
+# ==========================================
+# MISC
+# ==========================================
+.DS_Store
+.env.bak

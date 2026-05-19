@@ -1,0 +1,27 @@
+
+# Multi-stage Dockerfile for production
+# 1) Builder: builds the app with Node
+# 2) Production: serves the static files with nginx
+
+FROM node:20-alpine AS builder
+WORKDIR /app
+ENV PATH /app/node_modules/.bin:$PATH
+
+# Copy dependencies first to take advantage of Docker cache
+COPY package*.json ./
+RUN npm ci --silent
+
+# Copy the rest of the source code and build
+COPY . .
+RUN npm run build
+
+FROM nginx:stable-alpine
+
+# Clean default content and copy the build output
+RUN rm -rf /usr/share/nginx/html/*
+COPY --from=builder /app/build /usr/share/nginx/html
+
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+
+
