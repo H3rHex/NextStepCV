@@ -2,11 +2,7 @@ from datetime import datetime, timezone
 from typing import List, Optional
 from sqlalchemy import Integer, String, ForeignKey, Text, DateTime
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from database import Base
-# Asegúrate de que las rutas de importación coincidan con tu árbol de directorios
-from models.cv_templates import CVTemplate
-from models.users import User
-from models.cv_sections import CVExperience, CVEducation, CVSkill, CVLanguage, CVSocialLink
+from app.database import Base
 
 
 class CV(Base):

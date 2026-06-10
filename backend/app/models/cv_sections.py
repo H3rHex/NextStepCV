@@ -12,13 +12,15 @@ class CVSection(Base):
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
 
-    __table_args__ = (
-        ForeignKeyConstraint(
-            ["user_id", "cv_number"],
-            ["cvs.user_id", "cvs.cv_number"],
-            ondelete="CASCADE",
-        ),
-    )
+    @declared_attr
+    def __table_args__(cls):
+        return (
+            ForeignKeyConstraint(
+                ["user_id", "cv_number"],
+                ["cvs.user_id", "cvs.cv_number"],
+                ondelete="CASCADE",
+            ),
+        )
 
     @declared_attr
     def cv(cls):
