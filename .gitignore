@@ -86,3 +86,4 @@ storage/
 # ==========================================
 .DS_Store
 .env.bak
+backend/uv.lock

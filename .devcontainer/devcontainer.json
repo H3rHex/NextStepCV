@@ -6,7 +6,6 @@
   "service": "dev",
   "overrideCommand": true,
   "workspaceFolder": "/workspaces/NextStepCV",
-  "postCreateCommand": "bash -lc 'bash /workspaces/NextStepCV/.devcontainer/post-create.sh'",
   "forwardPorts": [8000, 5173,9001, 5432],
   "customizations": {
     "vscode": {
