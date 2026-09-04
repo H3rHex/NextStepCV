@@ -1,0 +1,16 @@
+{
+  "name": "NextStepCV Fullstack App",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/app",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "ms-python.python",
+        "dbaeumer.vscode-eslint"
+      ]
+    }
+  }
+}

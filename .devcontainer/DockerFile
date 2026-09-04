@@ -1,0 +1,11 @@
+FROM python:3.12-alpine
+
+RUN apk add --no-cache nodejs npm git curl bash
+RUN npm install -g corepack
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
+RUN pip install --no-cache-dir uv
+
+WORKDIR /app

@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: .devcontainer/DockerFile
+    container_name: nextstepcv-app
+    working_dir: /app
+    ports:
+      - "5173:5173"
+      - "8000:8000"
+    volumes:
+      - .:/app
+    command: sleep infinity
+    networks:
+      - nextstepcv-network
+
+networks:
+  nextstepcv-network:
+    driver: bridge
