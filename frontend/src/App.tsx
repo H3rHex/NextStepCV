@@ -1,10 +1,10 @@
-import { useTranslation } from "react-i18next";
+import Header from "./components/layout/Header";
 
 function App() {
-  const {t} = useTranslation();
 
   return (
     <>
+      <Header/>
     </>
   )
 }
