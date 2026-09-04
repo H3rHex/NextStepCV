@@ -2,6 +2,7 @@ import i18n from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
 
+import en from './langs/en.json';
 import es from './langs/es.json';
 
 i18n
@@ -10,6 +11,7 @@ i18n
     .init({
         resources: {
             es: { translation: es },
+            en: { translation: en }
         },
         fallbackLng: 'es',
         interpolation: {

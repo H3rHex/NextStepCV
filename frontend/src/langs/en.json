@@ -1,7 +1,7 @@
 {
-    "resume":{
+    "resume": {
         "resume-type-selector": {
-            "developer": "Desarrollador",
+            "developer": "Developer",
             "general": "General"
         }
     }
