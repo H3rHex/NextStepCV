@@ -1,11 +1,19 @@
 FROM python:3.12-alpine
 
-RUN apk add --no-cache nodejs npm git curl bash
+RUN apk add --no-cache nodejs npm git curl bash shadow
 RUN npm install -g corepack
 RUN corepack enable && corepack prepare pnpm@latest --activate
-
-RUN corepack enable && corepack prepare pnpm@latest --activate
-
 RUN pip install --no-cache-dir uv
 
+ARG USERNAME=developer
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID
+
+RUN addgroup -g $USER_GID $USERNAME \
+    && adduser -u $USER_UID -G $USERNAME -s /bin/sh -D $USERNAME
+
 WORKDIR /app
+
+RUN chown -R $USERNAME:$USERNAME /app
+
+USER $USERNAME
