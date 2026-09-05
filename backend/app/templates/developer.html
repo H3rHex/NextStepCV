@@ -54,7 +54,7 @@
         {% for item in resume.education %}
         <div class="item">
             <div class="item-head">
-                <div class="item-title">{{ item.degree }}</div>
+                <div class="item-title item-title--edu">{{ item.degree }}</div>
                 <span class="item-date">{{ date_range(item, t) }}</span>
             </div>
             <div class="item-sub">{{ item.institution }}</div>
@@ -66,9 +66,9 @@
         <h2 class="section-title">{{ t('sections.languages') }}</h2>
         {% for item in resume.languages %}
         <div class="item">
-            <div class="item-head">
+            <div class="item-lang">
                 <span class="item-title">{{ item.language }}</span>
-                <span class="item-date">{{ item.proficiency|upper }}</span>
+                <span class="proficiency">{{ t('proficiencies.' + item.proficiency) }}</span>
             </div>
         </div>
         {% endfor %}
