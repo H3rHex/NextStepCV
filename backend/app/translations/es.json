@@ -1,0 +1,23 @@
+{
+  "sections": {
+    "contact": "Contacto",
+    "profile": "Perfil",
+    "experience": "Experiencia",
+    "education": "Educación",
+    "languages": "Idiomas",
+    "technicalSkills": "Habilidades técnicas",
+    "languagesAndFrameworks": "Lenguajes y frameworks",
+    "toolsAndDatabases": "Herramientas y bases de datos",
+    "repositories": "Repositorios"
+  },
+  "labels": {
+    "email": "Email",
+    "phone": "Teléfono",
+    "location": "Ubicación",
+    "website": "Sitio web",
+    "github": "GitHub",
+    "from": "Desde",
+    "to": "Hasta",
+    "present": "Presente"
+  }
+}
