@@ -10,6 +10,16 @@
             "education": "Educación",
             "languages": "Idiomas"
         },
+        "placeholders": {
+            "firstName": "Nombre",
+            "lastName": "Apellidos",
+            "title": "Título Profesional",
+            "summary": "Resumen profesional..."
+        },
+        "actions": {
+            "reset": "Restablecer",
+            "save": "Guardar"
+        },
         "ui":{
             "add": "Agregar",
             "remove": "Eliminar",
@@ -18,7 +28,17 @@
             "cancel": "Cancelar",
             "addExperience": "Agregar Experiencia",
             "addEducation": "Agregar Educación",
-            "addLanguage": "Agregar Idioma"
+            "addLanguage": "Agregar Idioma",
+            "addHighlight": "+ Añadir logro"
+        },
+        "image": {
+            "change": "Cambiar",
+            "placeholder": "FOTO"
+        },
+        "errors": {
+            "invalidImageType": "Por favor selecciona un archivo de imagen",
+            "imageTooLarge": "La imagen debe ser menor a {{maxSize}} (actual: {{currentSize}})",
+            "imageProcessingError": "Error al procesar la imagen"
         },
         "dates": {
             "present": "Presente"
@@ -35,6 +55,5 @@
             "intermediate": "Intermedio",
             "basic": "Básico"
         }
-        
     }
 }

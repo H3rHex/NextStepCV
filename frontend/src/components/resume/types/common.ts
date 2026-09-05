@@ -1,5 +1,3 @@
-// src/components/resume/types/common.ts
-
 export interface PersonalInfo {
     firstName: string;
     lastName: string;
@@ -8,7 +6,8 @@ export interface PersonalInfo {
     phone: string;
     location: string;
     website?: string;
-    summary: string;       
+    summary: string;
+    photo?: string;
 }
 
 export interface ExperienceItem {

@@ -1,8 +1,24 @@
 {
     "resume": {
-        "resume-type-selector": {
+        "type-selector": {
             "developer": "Developer",
             "general": "General"
+        },
+        "sections": {
+            "summary": "Profile",
+            "experience": "Work Experience",
+            "education": "Education",
+            "languages": "Languages"
+        },
+        "placeholders": {
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "title": "Professional Title",
+            "summary": "Professional summary..."
+        },
+        "actions": {
+            "reset": "Reset",
+            "save": "Save"
         },
         "ui": {
             "add": "Add",
@@ -12,9 +28,19 @@
             "cancel": "Cancel",
             "addExperience": "Add Experience",
             "addEducation": "Add Education",
-            "addLanguage": "Add Language"
+            "addLanguage": "Add Language",
+            "addHighlight": "+ Add highlight"
         },
-        "dates":{
+        "image": {
+            "change": "Change",
+            "placeholder": "PHOTO"
+        },
+        "errors": {
+            "invalidImageType": "Please select an image file",
+            "imageTooLarge": "The image must be smaller than {{maxSize}} (current: {{currentSize}})",
+            "imageProcessingError": "Error processing the image"
+        },
+        "dates": {
             "present": "Present"
         },
         "proficiencies": {

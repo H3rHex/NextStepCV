@@ -147,6 +147,10 @@ export function useResumeForm<T extends AnyResumeData>({
   }, [data, onSubmit]);
   
   const toJSON = useCallback((): T => {
+    // Aquí puedes transformar los datos antes de enviarlos al backend:
+    // - photo: se envía como base64 data URL (string)
+    // - Si el backend espera archivo multipart, tendrías que separar la imagen
+    // - Convertir fechas a ISO, limpiar IDs temporales, etc.
     return data;
   }, [data]);
 
@@ -221,6 +225,7 @@ export function getInitialResumeData(type: 'general' | 'developer'): AnyResumeDa
       location: '',
       website: '',
       summary: '',
+      photo: '',
     },
     experience: [createEmptyExperience()],
     education: [createEmptyEducation()],

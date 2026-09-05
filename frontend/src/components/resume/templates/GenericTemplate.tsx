@@ -77,8 +77,8 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
             
             <header className="flex items-center gap-6 border-b border-neutral-200 pb-6 mb-6">
                 <InlineImageUpload
-                    value={undefined}
-                    onChange={() => { }}
+                    value={data.personalInfo.photo}
+                    onChange={(value) => updatePersonalInfo('photo', value)}
                 />
 
                 <div className="flex-1 space-y-2">
