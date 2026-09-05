@@ -13,8 +13,8 @@ interface ResumeTypeSelectorProps {
 }
 
 const RESUME_OPTIONS: ResumeOption[] = [
-    { id: 'developer', label: 'resume.resume-type-selector.developer' },
-    { id: 'general', label: 'resume.resume-type-selector.general' },
+    { id: 'developer', label: 'resume.type-selector.developer' },
+    { id: 'general', label: 'resume.type-selector.general' },
 ];
 
 export const ResumeTypeSelector = ({ currentType, onSelectType }: ResumeTypeSelectorProps) => {

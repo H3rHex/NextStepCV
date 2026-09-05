@@ -1,8 +1,72 @@
 {
     "resume": {
-        "resume-type-selector": {
+        "type-selector": {
             "developer": "Developer",
             "general": "General"
+        },
+        "sections": {
+            "summary": "Profile",
+            "experience": "Work Experience",
+            "education": "Education",
+            "languages": "Languages"
+        },
+        "placeholders": {
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "title": "Professional Title",
+            "summary": "Professional summary..."
+        },
+        "actions": {
+            "reset": "Reset",
+            "save": "Save"
+        },
+        "ui": {
+            "add": "Add",
+            "remove": "Remove",
+            "edit": "Edit",
+            "save": "Save",
+            "cancel": "Cancel",
+            "addExperience": "Add Experience",
+            "addEducation": "Add Education",
+            "addLanguage": "Add Language",
+            "addHighlight": "+ Add highlight",
+            "profilePhotoAlt": "Profile photo",
+            "photoLabel": "PHOTO",
+            "changePhoto": "Change"
+        },
+        "image": {
+            "change": "Change",
+            "placeholder": "PHOTO"
+        },
+        "success": {
+            "saveSuccess": "Resume successfully saved",
+            "saved": "Resume saved. Image: {{imageName}}"
+        },
+        "errors": {
+            "invalidImageType": "Please select an image file",
+            "imageTooLarge": "The image must be smaller than {{maxSize}} (current: {{currentSize}})",
+            "imageProcessingError": "Error processing the image",
+            "saveCatch": "Error saving the resume:",
+            "saveFailed": "Error saving: {{status}}",
+            "apiUrlNotSet": "VITE_API_BASE_URL is not defined. Cannot send to backend."
+        },
+        "dates": {
+            "present": "Present"
+        },
+        "proficiencies": {
+            "a1": "A1",
+            "a2": "A2",
+            "b1": "B1",
+            "b2": "B2",
+            "c1": "C1",
+            "c2": "C2",
+            "native": "Native",
+            "fluent": "Fluent",
+            "intermediate": "Intermediate",
+            "basic": "Basic"
         }
+    },
+    "common": {
+        "none": "none"
     }
 }
