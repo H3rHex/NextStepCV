@@ -1,0 +1,24 @@
+{% macro date_range(item, t) -%}
+    {% set end = item.endDate if item.endDate and item.endDate != 'present' else t('labels.present') -%}
+    {{ t('labels.from') }} {{ item.startDate }} — {{ t('labels.to') }} {{ end }}
+{%- endmacro %}
+
+{% macro bullet_list(items) -%}
+    {% if items -%}
+    <div class="tags">
+        {% for item in items -%}
+        <span class="tag">{{ item }}</span>
+        {% endfor -%}
+    </div>
+    {% endif -%}
+{%- endmacro %}
+
+{% macro highlight_list(items) -%}
+    {% if items -%}
+    <ul class="highlights">
+        {% for item in items -%}
+        <li>{{ item }}</li>
+        {% endfor -%}
+    </ul>
+    {% endif -%}
+{%- endmacro %}

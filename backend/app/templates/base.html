@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="utf-8">
+    <title>{{ resume.personalInfo.firstName }} {{ resume.personalInfo.lastName }}</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="header">
+        {% if profile_image %}
+        <div class="photo-wrap">
+            <img class="photo" src="{{ profile_image }}">
+        </div>
+        {% endif %}
+
+        <div class="header-body">
+            <h1 class="name">{{ resume.personalInfo.firstName }} {{ resume.personalInfo.lastName }}</h1>
+            {% if resume.personalInfo.title %}
+            <p class="headline">{{ resume.personalInfo.title }}</p>
+            {% endif %}
+
+            <ul class="contact">
+                {% if resume.personalInfo.email %}
+                <li class="contact-item">{{ resume.personalInfo.email }}</li>
+                {% endif %}
+                {% if resume.personalInfo.phone %}
+                <li class="contact-item">{{ resume.personalInfo.phone }}</li>
+                {% endif %}
+                {% if resume.personalInfo.location %}
+                <li class="contact-item">{{ resume.personalInfo.location }}</li>
+                {% endif %}
+                {% if resume.personalInfo.website %}
+                <li class="contact-item">{{ resume.personalInfo.website }}</li>
+                {% endif %}
+            </ul>
+        </div>
+    </header>
+
+    {% if resume.personalInfo.summary %}
+    <section class="section">
+        <h2 class="section-title">{{ t('sections.profile') }}</h2>
+        <p class="profile-text">{{ resume.personalInfo.summary }}</p>
+    </section>
+    {% endif %}
+
+    {% block sections %}{% endblock %}
+</body>
+</html>
