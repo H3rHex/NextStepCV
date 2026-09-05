@@ -8,7 +8,6 @@ interface ResumePageProps extends React.HTMLAttributes<HTMLDivElement> {
 export const ResumePage: React.FC<ResumePageProps> = ({
     children,
     className = '',
-    ...props
 }) => {
     return (
         <div className="w-full flex justify-center px-2 sm:px-4">
@@ -27,14 +26,10 @@ export const ResumePage: React.FC<ResumePageProps> = ({
                     ${className}
                 `}
                 
-                {...exampleProps(props)}
-            >
+                >
                 {children}
             </div>
         </div>
     );
 };
 
-function exampleProps(props: any) {
-    return props;
-}

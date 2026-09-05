@@ -1,20 +1,21 @@
 import { useState } from "react";
+import { useTranslation } from 'react-i18next';
 import Header from "./components/layout/Header";
 import type { ResumeType } from "./components/layout/ResumeTypeSelector";
 import { ResumePage } from "./components/resume/ResumePage";
 import GenericTemplate from "./components/resume/templates/GenericTemplate";
 import type { BaseResumeData } from "./components/resume/types/base";
-import { getInitialResumeData } from "./hooks/useResumeForm";
 import type { ResumeSubmitPayload } from "./hooks/useResumeForm";
-
+import { getInitialResumeData } from "./hooks/useResumeForm";
 
 function App() {
+  const { t } = useTranslation();
   const [currentType, setCurrentType] = useState<ResumeType>('general');
 
   const handleSave = async ({ formData, data, imageFile }: ResumeSubmitPayload<BaseResumeData>) => {
     const baseUrl = import.meta.env.VITE_API_BASE_URL;
     if (!baseUrl) {
-      console.warn('VITE_API_BASE_URL no definido. No se puede enviar al backend.');
+      console.warn(t('resume.errors.apiUrlNotSet', 'VITE_API_BASE_URL no definido. No se puede enviar al backend.'));
       return;
     }
 
@@ -25,15 +26,25 @@ function App() {
       });
 
       if (!response.ok) {
-        throw new Error(`Error al guardar: ${response.status}`);
+        throw new Error(
+          t('resume.errors.saveFailed', {
+            status: response.status,
+            defaultValue: `Error al guardar: {{status}}`
+          })
+        );
       }
 
-      console.log('✅ Resume guardado:', data, 'imagen:', imageFile?.name);
+      console.log(
+        t('resume.success.saved', {
+          imageName: imageFile?.name || t('common.none', 'ninguna'),
+          defaultValue: 'Resume guardado. Imagen: {{imageName}}'
+        }),
+        data
+      );
     } catch (error) {
-      console.error('❌ Error al guardar el resume:', error);
+      console.error(t('resume.errors.saveCatch', 'Error al guardar el resume:'), error);
     }
   };
-
   const initialData = currentType === 'general'
     ? getInitialResumeData('general')
     : getInitialResumeData('developer');

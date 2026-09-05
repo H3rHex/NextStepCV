@@ -29,16 +29,26 @@
             "addExperience": "Add Experience",
             "addEducation": "Add Education",
             "addLanguage": "Add Language",
-            "addHighlight": "+ Add highlight"
+            "addHighlight": "+ Add highlight",
+            "profilePhotoAlt": "Profile photo",
+            "photoLabel": "PHOTO",
+            "changePhoto": "Change"
         },
         "image": {
             "change": "Change",
             "placeholder": "PHOTO"
         },
+        "success": {
+            "saveSuccess": "Resume successfully saved",
+            "saved": "Resume saved. Image: {{imageName}}"
+        },
         "errors": {
             "invalidImageType": "Please select an image file",
             "imageTooLarge": "The image must be smaller than {{maxSize}} (current: {{currentSize}})",
-            "imageProcessingError": "Error processing the image"
+            "imageProcessingError": "Error processing the image",
+            "saveCatch": "Error saving the resume:",
+            "saveFailed": "Error saving: {{status}}",
+            "apiUrlNotSet": "VITE_API_BASE_URL is not defined. Cannot send to backend."
         },
         "dates": {
             "present": "Present"
@@ -55,5 +65,8 @@
             "intermediate": "Intermediate",
             "basic": "Basic"
         }
+    },
+    "common": {
+        "none": "none"
     }
 }

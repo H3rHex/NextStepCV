@@ -1,5 +1,5 @@
 {
-    "resume":{
+    "resume": {
         "type-selector": {
             "developer": "Desarrollador",
             "general": "General"
@@ -20,7 +20,7 @@
             "reset": "Restablecer",
             "save": "Guardar"
         },
-        "ui":{
+        "ui": {
             "add": "Agregar",
             "remove": "Eliminar",
             "edit": "Editar",
@@ -29,16 +29,26 @@
             "addExperience": "Agregar Experiencia",
             "addEducation": "Agregar Educación",
             "addLanguage": "Agregar Idioma",
-            "addHighlight": "+ Añadir logro"
+            "addHighlight": "+ Añadir logro",
+            "profilePhotoAlt": "Foto de perfil",
+            "photoLabel": "FOTO",
+            "changePhoto": "Cambiar"
         },
         "image": {
             "change": "Cambiar",
             "placeholder": "FOTO"
         },
+        "success": {
+            "saveSuccess": "Currículum guardado con éxito",
+            "saved": "Resume guardado. Imagen: {{imageName}}"
+        },
         "errors": {
             "invalidImageType": "Por favor selecciona un archivo de imagen",
             "imageTooLarge": "La imagen debe ser menor a {{maxSize}} (actual: {{currentSize}})",
-            "imageProcessingError": "Error al procesar la imagen"
+            "imageProcessingError": "Error al procesar la imagen",
+            "saveCatch": "Error al guardar el resume:",
+            "saveFailed": "Error al guardar: {{status}}",
+            "apiUrlNotSet": "VITE_API_BASE_URL no definido. No se puede enviar al backend."
         },
         "dates": {
             "present": "Presente"
@@ -55,5 +65,8 @@
             "intermediate": "Intermedio",
             "basic": "Básico"
         }
+    },
+    "common": {
+        "none": "ninguna"
     }
 }
