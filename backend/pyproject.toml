@@ -1,10 +1,7 @@
 [project]
 name = "backend"
-version = "0.1.0"
-description = "Add your description here"
-readme = "README.md"
 authors = [
-    { name = "h3rhex", email = "149667352+H3rHex@users.noreply.github.com" }
+    { name = "h3rhex"}
 ]
 requires-python = ">=3.12"
 dependencies = []
