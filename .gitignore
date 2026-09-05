@@ -1,3 +1,7 @@
 .vscode
 .pnpm-store
 */.env
+
+.venv
+__pycache__
+*.pyc
