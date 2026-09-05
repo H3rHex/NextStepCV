@@ -1,8 +1,37 @@
 {
     "resume":{
-        "resume-type-selector": {
+        "type-selector": {
             "developer": "Desarrollador",
             "general": "General"
+        },
+        "sections": {
+            "summary": "Perfil",
+            "experience": "Experiencia Laboral",
+            "education": "Educación",
+            "languages": "Idiomas"
+        },
+        "ui":{
+            "add": "Agregar",
+            "remove": "Eliminar",
+            "edit": "Editar",
+            "save": "Guardar",
+            "cancel": "Cancelar"
+        },
+        "dates": {
+            "present": "Presente"
+        },
+        "proficiencies": {
+            "a1": "A1",
+            "a2": "A2",
+            "b1": "B1",
+            "b2": "B2",
+            "c1": "C1",
+            "c2": "C2",
+            "native": "Nativo",
+            "fluent": "Fluido",
+            "intermediate": "Intermedio",
+            "basic": "Básico"
         }
+        
     }
 }

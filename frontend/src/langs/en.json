@@ -3,6 +3,28 @@
         "resume-type-selector": {
             "developer": "Developer",
             "general": "General"
+        },
+        "ui": {
+            "add": "Add",
+            "remove": "Remove",
+            "edit": "Edit",
+            "save": "Save",
+            "cancel": "Cancel"
+        },
+        "dates":{
+            "present": "Present"
+        },
+        "proficiencies": {
+            "a1": "A1",
+            "a2": "A2",
+            "b1": "B1",
+            "b2": "B2",
+            "c1": "C1",
+            "c2": "C2",
+            "native": "Native",
+            "fluent": "Fluent",
+            "intermediate": "Intermediate",
+            "basic": "Basic"
         }
     }
 }

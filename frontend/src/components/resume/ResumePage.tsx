@@ -12,7 +12,6 @@ export const ResumePage: React.FC<ResumePageProps> = ({
 }) => {
     return (
         <div className="w-full flex justify-center px-2 sm:px-4">
-            {/* Contenedor principal: Mobile-first flexible, simulación A4 en desktop */}
             <div
                 className={`
                 w-full 
