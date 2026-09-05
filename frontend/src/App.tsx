@@ -5,14 +5,33 @@ import { ResumePage } from "./components/resume/ResumePage";
 import GenericTemplate from "./components/resume/templates/GenericTemplate";
 import type { BaseResumeData } from "./components/resume/types/base";
 import { getInitialResumeData } from "./hooks/useResumeForm";
+import type { ResumeSubmitPayload } from "./hooks/useResumeForm";
 
 
 function App() {
   const [currentType, setCurrentType] = useState<ResumeType>('general');
 
-  const handleSave = async (data: BaseResumeData) => {
-    console.log('📤 Enviando al servidor:', data);
-    alert('¡Guardado! Revisa la consola para ver los datos que se enviarían al servidor.');
+  const handleSave = async ({ formData, data, imageFile }: ResumeSubmitPayload<BaseResumeData>) => {
+    const baseUrl = import.meta.env.VITE_API_BASE_URL;
+    if (!baseUrl) {
+      console.warn('VITE_API_BASE_URL no definido. No se puede enviar al backend.');
+      return;
+    }
+
+    try {
+      const response = await fetch(`${baseUrl}/api/resumes`, {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error al guardar: ${response.status}`);
+      }
+
+      console.log('✅ Resume guardado:', data, 'imagen:', imageFile?.name);
+    } catch (error) {
+      console.error('❌ Error al guardar el resume:', error);
+    }
   };
 
   const initialData = currentType === 'general'

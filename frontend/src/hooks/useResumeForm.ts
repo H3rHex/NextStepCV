@@ -1,11 +1,25 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { AnyResumeData, BaseResumeData, DeveloperResumeData } from '../components/resume/types';
 
+export const MIN_IMAGE_FIELD = 'profile_image';
+export const MIN_IMAGE_FIELD_DATA = 'data';
+
+export interface ResumeSubmitPayload<T> {
+  formData: FormData;
+  data: T;
+  imageFile: File | null;
+}
 
 export interface UseResumeFormReturn<T extends AnyResumeData> {
   data: T;
   
   isDirty: boolean;
+  
+  imageFile: File | null;
+  
+  setImageFile: (file: File | null) => void;
+  
+  imagePreviewUrl: string | null;
   
   updateField: <K extends keyof T>(field: K, value: T[K]) => void;
   
@@ -39,14 +53,17 @@ export interface UseResumeFormReturn<T extends AnyResumeData> {
 
 export function useResumeForm<T extends AnyResumeData>({
   initialData,
-  resumeType: _resumeType,
   onSubmit,
   storageKey,
+  imageFieldName = MIN_IMAGE_FIELD,
+  dataFieldName = MIN_IMAGE_FIELD_DATA,
 }: {
   initialData: T;
-  resumeType: 'general' | 'developer';
-  onSubmit?: (data: T) => Promise<void>;
+  onSubmit?: (payload: ResumeSubmitPayload<T>) => Promise<void>;
+  resumeType?: 'general' | 'developer';
   storageKey?: string;
+  imageFieldName?: string;
+  dataFieldName?: string;
 }): UseResumeFormReturn<T> {
   
   const [data, setData] = useState<T>(() => {
@@ -56,7 +73,6 @@ export function useResumeForm<T extends AnyResumeData>({
         const stored = localStorage.getItem(storageKey);
         if (stored) {
           const parsed = JSON.parse(stored);
-          // Validación básica: si tiene la estructura esperada, úsalo
           if (parsed && typeof parsed === 'object' && 'personalInfo' in parsed) {
             return parsed as T;
           }
@@ -66,6 +82,10 @@ export function useResumeForm<T extends AnyResumeData>({
     }
     return initialData;
   });
+  
+  const [imageFile, setImageFileState] = useState<File | null>(null);
+  
+  const [imagePreviewUrl, setImagePreviewUrl] = useState<string | null>(null);
   
   const [isDirty, setIsDirty] = useState(false);
  
@@ -79,7 +99,6 @@ export function useResumeForm<T extends AnyResumeData>({
     }
   }, [data, storageKey]);
   
-  
   const isFirstRender = useRef(true);
   useEffect(() => {
     if (isFirstRender.current) {
@@ -89,10 +108,36 @@ export function useResumeForm<T extends AnyResumeData>({
     setIsDirty(true);
   }, [data]);
   
+  const setImageFile = useCallback((file: File | null) => {
+    setImageFileState(prevFile => {
+      if (prevFile) {
+        const url = URL.createObjectURL(prevFile);
+        URL.revokeObjectURL(url);
+      }
+      return file;
+    });
+    
+    setImagePreviewUrl(prevUrl => {
+      if (prevUrl) {
+        URL.revokeObjectURL(prevUrl);
+      }
+      return file ? URL.createObjectURL(file) : null;
+    });
+    
+    setIsDirty(true);
+  }, []);
+  
+  useEffect(() => {
+    return () => {
+      if (imagePreviewUrl) {
+        URL.revokeObjectURL(imagePreviewUrl);
+      }
+    };
+  }, [imagePreviewUrl]);
+  
   const updateField = useCallback(<K extends keyof T>(field: K, value: T[K]) => {
     setData(prev => ({ ...prev, [field]: value }));
   }, []);
-  
   
   const updateNestedField = useCallback((
     field: 'experience' | 'education' | 'languages' | 'repositories', 
@@ -107,13 +152,11 @@ export function useResumeForm<T extends AnyResumeData>({
       ),
     }));
   }, []);
-  
  
   const updateArrayField = useCallback(<K extends keyof T>(field: K, value: T[K]) => {
     setData(prev => ({ ...prev, [field]: value }));
   }, []);
   
-
   const addItem = useCallback((
     field: 'experience' | 'education' | 'languages' | 'repositories', 
     item: any
@@ -136,28 +179,36 @@ export function useResumeForm<T extends AnyResumeData>({
   
   const reset = useCallback(() => {
     setData(initialData);
+    setImageFile(null);
     setIsDirty(false);
-  }, [initialData]);
+  }, [initialData, setImageFile]);
   
+  const buildFormData = useCallback((resumeData: T, file: File | null): FormData => {
+    const formData = new FormData();
+    formData.append(dataFieldName, JSON.stringify(resumeData));
+    if (file) {
+      formData.append(imageFieldName, file);
+    }
+    return formData;
+  }, [dataFieldName, imageFieldName]);
   
   const handleSubmit = useCallback(async () => {
     if (onSubmit) {
-      await onSubmit(data);
+      const formData = buildFormData(data, imageFile);
+      await onSubmit({ formData, data, imageFile });
     }
-  }, [data, onSubmit]);
+  }, [onSubmit, buildFormData, data, imageFile]);
   
   const toJSON = useCallback((): T => {
-    // Aquí puedes transformar los datos antes de enviarlos al backend:
-    // - photo: se envía como base64 data URL (string)
-    // - Si el backend espera archivo multipart, tendrías que separar la imagen
-    // - Convertir fechas a ISO, limpiar IDs temporales, etc.
     return data;
   }, [data]);
-
   
   return {
     data,
     isDirty,
+    imageFile,
+    setImageFile,
+    imagePreviewUrl,
     updateField,
     updateNestedField,
     updateArrayField,
@@ -173,7 +224,7 @@ export function useResumeForm<T extends AnyResumeData>({
 
 export function createEmptyExperience(): BaseResumeData['experience'][0] {
   return {
-    id: crypto.randomUUID(), // ID único temporal
+    id: crypto.randomUUID(),
     company: '',
     role: '',
     startDate: '',
@@ -225,7 +276,6 @@ export function getInitialResumeData(type: 'general' | 'developer'): AnyResumeDa
       location: '',
       website: '',
       summary: '',
-      photo: '',
     },
     experience: [createEmptyExperience()],
     education: [createEmptyEducation()],

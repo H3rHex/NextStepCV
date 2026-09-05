@@ -3,17 +3,8 @@ import { useTranslation } from 'react-i18next';
 
 interface InlineImageUploadProps {
     value?: string;
-    onChange?: (value: string) => void;
+    onChange?: (file: File | null) => void;
     className?: string;
-}
-
-function fileToBase64(file: File): Promise<string> {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result as string);
-        reader.onerror = reject;
-        reader.readAsDataURL(file);
-    });
 }
 
 function formatBytes(bytes: number): string {
@@ -31,7 +22,7 @@ export const InlineImageUpload: React.FC<InlineImageUploadProps> = ({
 }) => {
     const { t } = useTranslation();
 
-    const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (!file) return;
 
@@ -51,12 +42,7 @@ export const InlineImageUpload: React.FC<InlineImageUploadProps> = ({
             return;
         }
 
-        try {
-            const base64 = await fileToBase64(file);
-            onChange?.(base64);
-        } catch {
-            alert(t('resume.errors.imageProcessingError'));
-        }
+        onChange?.(file);
     };
 
     return (

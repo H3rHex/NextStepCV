@@ -2,6 +2,7 @@
 import type React from 'react';
 import { useTranslation } from 'react-i18next';
 import { createEmptyEducation, createEmptyExperience, createEmptyLanguage, useResumeForm } from '../../../hooks/useResumeForm';
+import type { ResumeSubmitPayload } from '../../../hooks/useResumeForm';
 import type { BaseResumeData, EducationItem, ExperienceItem, LanguageItem } from '../types';
 
 import { InlineDatePicker } from '../ui/InlineDatePicker';
@@ -14,7 +15,7 @@ import { SectionContainer } from '../ui/SelectionContainer';
 
 interface GenericTemplateProps {
     initialData: BaseResumeData;
-    onSave?: (data: BaseResumeData) => Promise<void>;
+    onSave?: (payload: ResumeSubmitPayload<BaseResumeData>) => Promise<void>;
     storageKey?: string;
 }
 
@@ -31,12 +32,13 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
         updateNestedField,
         addItem,
         removeItem,
+        setImageFile,
+        imagePreviewUrl,
         handleSubmit,
         isDirty,
         reset,
     } = useResumeForm<BaseResumeData>({
         initialData,
-        resumeType: 'general',
         onSubmit: onSave,
         storageKey,
     });
@@ -77,8 +79,8 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
             
             <header className="flex items-center gap-6 border-b border-neutral-200 pb-6 mb-6">
                 <InlineImageUpload
-                    value={data.personalInfo.photo}
-                    onChange={(value) => updatePersonalInfo('photo', value)}
+                    value={imagePreviewUrl ?? undefined}
+                    onChange={setImageFile}
                 />
 
                 <div className="flex-1 space-y-2">
