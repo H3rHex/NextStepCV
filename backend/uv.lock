@@ -53,6 +53,8 @@ version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "fastapi", extra = ["standard"] },
+    { name = "jinja2" },
+    { name = "pydantic-settings" },
     { name = "python-dotenv" },
     { name = "weasyprint" },
 ]
@@ -60,6 +62,8 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "fastapi", extras = ["standard"], specifier = ">=0.141.1" },
+    { name = "jinja2", specifier = ">=3.1.6" },
+    { name = "pydantic-settings", specifier = ">=2.15.0" },
     { name = "python-dotenv", specifier = ">=1.2.3" },
     { name = "weasyprint", specifier = ">=69.0" },
 ]
