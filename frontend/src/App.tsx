@@ -9,7 +9,7 @@ import type { ResumeSubmitPayload } from "./hooks/useResumeForm";
 import { getInitialResumeData } from "./hooks/useResumeForm";
 
 function App() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [currentType, setCurrentType] = useState<ResumeType>('general');
 
   const handleSave = async ({ formData, data, imageFile }: ResumeSubmitPayload<BaseResumeData>) => {
@@ -18,6 +18,8 @@ function App() {
       console.warn(t('resume.errors.apiUrlNotSet', 'VITE_API_BASE_URL no definido. No se puede enviar al backend.'));
       return;
     }
+
+    formData.set('lang', i18n.resolvedLanguage || 'es');
 
     try {
       const response = await fetch(`${baseUrl}/api/v1/create_resume`, {

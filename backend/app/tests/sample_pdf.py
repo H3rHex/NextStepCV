@@ -17,6 +17,7 @@ from app.tests.mock_data import DEVELOPER_JSON, GENERAL_JSON, write_mock_photo
 
 APP_DIR = Path(__file__).resolve().parents[1]
 SAMPLES_DIR = APP_DIR.parent / "samples"
+LOGO = Path.home() / "Pictures" / "h3rhex_logo.png"
 
 
 def main() -> None:
@@ -25,8 +26,8 @@ def main() -> None:
     shutil.rmtree(SAMPLES_DIR, ignore_errors=True)
     SAMPLES_DIR.mkdir(parents=True, exist_ok=True)
 
-    photo_generic = write_mock_photo(SAMPLES_DIR, "photo_ana.png")
-    photo_developer = write_mock_photo(SAMPLES_DIR, "photo_carlos.png")
+    photo_generic = LOGO if LOGO.exists() else write_mock_photo(SAMPLES_DIR, "photo_ana.png")
+    photo_developer = LOGO if LOGO.exists() else write_mock_photo(SAMPLES_DIR, "photo_carlos.png")
 
     cases = [
         ("generic_es", GENERAL_JSON, "es", None),
