@@ -20,7 +20,7 @@ function App() {
     }
 
     try {
-      const response = await fetch(`${baseUrl}/api/resumes`, {
+      const response = await fetch(`${baseUrl}/api/v1/create_resume`, {
         method: 'POST',
         body: formData,
       });
