@@ -1,9 +1,12 @@
+import base64
 import json
 from functools import reduce
+from io import BytesIO
 from pathlib import Path
 from typing import Any, Callable
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
+from PIL import Image
 from weasyprint import HTML
 
 from app.schemas import AnyResumeData, BaseResumeData, DeveloperResumeData
@@ -57,13 +60,37 @@ class PdfService:
         lang: str = DEFAULT_LANG,
         profile_image: str | None = None,
     ) -> str:
+        """Renderiza la plantilla del currículo a HTML.
+
+        `profile_image` es la ruta absoluta al archivo de imagen; se incrusta
+        como data URI para que el PDF resultante sea autocontenido y no
+        dependa de la resolución de rutas al convertirse.
+        """
         template_name = TEMPLATE_BY_TYPE[type(resume)]
         return self._env.get_template(template_name).render(
             resume=resume,
             lang=lang,
             t=self.translator(lang),
-            profile_image=profile_image,
+            profile_image=self._to_data_uri(profile_image) if profile_image else None,
         )
+
+    @staticmethod
+    def _to_data_uri(path: str) -> str:
+        with Image.open(path) as img:
+            img.thumbnail((512, 512), Image.Resampling.LANCZOS)
+            has_alpha = img.mode in ("RGBA", "LA") or (
+                img.mode == "P" and "transparency" in img.info
+            )
+            buf = BytesIO()
+            if has_alpha:
+                img = img.convert("RGBA")
+                mime, fmt = "image/png", "PNG"
+            else:
+                img = img.convert("RGB")
+                mime, fmt = "image/jpeg", "JPEG"
+            img.save(buf, fmt, quality=85)
+        data = base64.b64encode(buf.getvalue()).decode("ascii")
+        return f"data:{mime};base64,{data}"
 
     def generate(
         self,
