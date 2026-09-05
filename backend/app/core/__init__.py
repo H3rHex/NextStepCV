@@ -1,0 +1,1 @@
+"""Device configuration from .env via pydantic-settings."""
