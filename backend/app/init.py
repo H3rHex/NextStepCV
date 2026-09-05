@@ -1,15 +1,22 @@
-from dotenv import load_dotenv
+"""Entry point to start the NextStepCV API server.
+
+Run from the backend directory:
+
+    uv run python -m app.init
+"""
 
 import uvicorn
-import os
 
-load_dotenv()
+from app.core.config import settings
 
-HOST = os.getenv("BACKEND_HOST")
-PORT = int(os.getenv("BACKEND_PORT"))
 
 def main() -> None:
-    uvicorn.run("app.main:app", host=HOST, port=PORT, reload=True)
+    uvicorn.run(
+        "app.main:app",
+        host=settings.backend_host,
+        port=settings.backend_port,
+        reload=True,
+    )
 
 
 if __name__ == "__main__":

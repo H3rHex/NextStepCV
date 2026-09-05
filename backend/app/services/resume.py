@@ -1,11 +1,3 @@
-"""Validación del payload antes de llegar a la generación del PDF.
-
-Responsabilidades:
-- Deserializar el JSON `data` recibido del frontend.
-- Validarlo contra los schemas (discriminando el tipo de currículo).
-- Normalizar el idioma de las etiquetas.
-"""
-
 import json
 
 from app.schemas import AnyResumeData, parse_resume_data

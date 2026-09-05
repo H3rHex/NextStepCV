@@ -1,12 +1,3 @@
-"""Generación del currículo en PDF.
-
-- Renderiza la plantilla Jinja2 correspondiente al tipo de currículo.
-- Convierte el HTML a PDF con WeasyPrint.
-
-El servicio es puro: recibe un currículo ya validado y escribe el PDF en
-`output_path`. No conoce tokens, TTL ni el endpoint que lo expone.
-"""
-
 import json
 from functools import reduce
 from pathlib import Path

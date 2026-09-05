@@ -1,4 +1,3 @@
-"""Datos de ejemplo y helpers compartidos por los tests del backend."""
 
 import base64
 from pathlib import Path
