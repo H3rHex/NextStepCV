@@ -24,7 +24,6 @@ export interface EducationItem {
     id: string;
     institution: string;
     degree: string;
-    fieldOfStudy: string;
     startDate: string;
     endDate: string;
 }

@@ -15,7 +15,10 @@
             "remove": "Eliminar",
             "edit": "Editar",
             "save": "Guardar",
-            "cancel": "Cancelar"
+            "cancel": "Cancelar",
+            "addExperience": "Agregar Experiencia",
+            "addEducation": "Agregar Educación",
+            "addLanguage": "Agregar Idioma"
         },
         "dates": {
             "present": "Presente"

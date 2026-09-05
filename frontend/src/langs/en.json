@@ -9,7 +9,10 @@
             "remove": "Remove",
             "edit": "Edit",
             "save": "Save",
-            "cancel": "Cancel"
+            "cancel": "Cancel",
+            "addExperience": "Add Experience",
+            "addEducation": "Add Education",
+            "addLanguage": "Add Language"
         },
         "dates":{
             "present": "Present"
