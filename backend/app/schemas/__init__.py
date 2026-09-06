@@ -11,7 +11,12 @@ from app.schemas.common import (
     LanguageItem,
     PersonalInfo,
 )
-from app.schemas.developer import DeveloperResumeData, Repository, TechnicalSkills
+from app.schemas.developer import (
+    DeveloperResumeData,
+    Repository,
+    SocialMediaItem,
+    TechnicalSkills,
+)
 
 AnyResumeData = BaseResumeData | DeveloperResumeData
 
@@ -36,6 +41,7 @@ __all__ = [
     "BaseResumeData",
     "TechnicalSkills",
     "Repository",
+    "SocialMediaItem",
     "DeveloperResumeData",
     "AnyResumeData",
     "parse_resume_data",

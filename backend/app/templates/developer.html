@@ -5,15 +5,39 @@
 {% block sections %}
     <section class="section">
         <h2 class="section-title">{{ t('sections.technicalSkills') }}</h2>
+        {% if resume.technicalSkills.programmingLanguages %}
         <div class="skills-col">
-            <div class="item-sub">{{ t('sections.languagesAndFrameworks') }}</div>
-            {{ bullet_list(resume.technicalSkills.languagesAndFrameworks) }}
+            <div class="item-sub">{{ t('sections.programmingLanguages') }}</div>
+            {{ bullet_list(resume.technicalSkills.programmingLanguages) }}
         </div>
+        {% endif %}
+        {% if resume.technicalSkills.frameworks %}
+        <div class="skills-col">
+            <div class="item-sub">{{ t('sections.frameworks') }}</div>
+            {{ bullet_list(resume.technicalSkills.frameworks) }}
+        </div>
+        {% endif %}
+        {% if resume.technicalSkills.toolsAndDatabases %}
         <div class="skills-col">
             <div class="item-sub">{{ t('sections.toolsAndDatabases') }}</div>
             {{ bullet_list(resume.technicalSkills.toolsAndDatabases) }}
         </div>
+        {% endif %}
     </section>
+
+    {% if resume.socialMedia %}
+    <section class="section">
+        <h2 class="section-title">{{ t('sections.socialMedia') }}</h2>
+        <ul class="contact">
+            {% for item in resume.socialMedia %}
+            <li class="contact-item">
+                {% if item.url %}<a href="{{ item.url }}">{{ item.name }}</a>{% else %}{{ item.name }}{% endif %}
+                {% if item.username %}: {{ item.username }}{% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
 
     <section class="section">
         <h2 class="section-title">{{ t('sections.experience') }}</h2>

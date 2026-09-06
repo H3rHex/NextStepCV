@@ -6,9 +6,11 @@
     "education": "Educación",
     "languages": "Idiomas",
     "technicalSkills": "Habilidades técnicas",
-    "languagesAndFrameworks": "Lenguajes y frameworks",
+    "programmingLanguages": "Lenguajes de programación",
+    "frameworks": "Frameworks",
     "toolsAndDatabases": "Herramientas y bases de datos",
     "repositories": "Repositorios",
+    "socialMedia": "Redes sociales",
     "driving": "Carnet de conducir"
   },
   "labels": {
