@@ -13,7 +13,7 @@
             "technicalSkills": "Technical skills",
             "programmingLanguages": "Programming languages",
             "frameworks": "Frameworks",
-            "socialMedia": "Social media and portfolio"
+            "educationLanguages": "Education and languages"
         },
         "placeholders": {
             "firstName": "First Name",
@@ -51,10 +51,9 @@
             "addSkill": "Add",
             "searchSkill": "Search...",
             "done": "Done",
-            "website": "Website / Portfolio",
+            "website": "Web",
             "addSocialMedia": "+ Add social media",
-            "socialNetwork": "Network",
-            "socialUsername": "Username"
+            "socialUsername": "username"
         },
         "image": {
             "change": "Change",

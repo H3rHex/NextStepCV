@@ -20,10 +20,33 @@ export const SocialMediaEditor: React.FC<SocialMediaEditorProps> = ({
 }) => {
     const { t } = useTranslation();
 
-    const networkForName = (name: string) => catalog.find((item) => item.name === name);
+    const networkForName = (name: string) => catalog.find((entry) => entry.name === name);
 
     const updateItem = (index: number, patch: Partial<SocialMediaItem>) => {
         onChange(items.map((item, i) => (i === index ? { ...item, ...patch } : item)));
+    };
+
+    const handleNetworkChange = (index: number, name: string) => {
+        const current = items[index];
+        const prevNetwork = networkForName(current.name);
+        const nextNetwork = networkForName(name);
+        const prevAutoUrl = prevNetwork?.urlTemplate?.replace('{username}', current.username);
+        let url = current.url;
+        if (nextNetwork?.urlTemplate && (!current.url || current.url === prevAutoUrl)) {
+            url = nextNetwork.urlTemplate.replace('{username}', current.username);
+        }
+        updateItem(index, { name, url });
+    };
+
+    const handleUsernameChange = (index: number, username: string) => {
+        const current = items[index];
+        const network = networkForName(current.name);
+        const prevAutoUrl = network?.urlTemplate?.replace('{username}', current.username);
+        let url = current.url;
+        if (network?.urlTemplate && (!current.url || current.url === prevAutoUrl)) {
+            url = network.urlTemplate.replace('{username}', username);
+        }
+        updateItem(index, { username, url });
     };
 
     const removeItem = (index: number) => {
@@ -34,33 +57,26 @@ export const SocialMediaEditor: React.FC<SocialMediaEditorProps> = ({
         onChange([...items, createEmptySocialMediaItem(catalog[0]?.name ?? '')]);
     };
 
-    const handleNetworkChange = (index: number, name: string) => {
-        const current = items[index];
-        const prevNetwork = networkForName(current.name);
-        const nextNetwork = networkForName(name);
-        const prevAutoUrl = prevNetwork?.urlTemplate?.replace('{username}', current.username);
-        let url = current.url;
-        if (nextNetwork?.urlTemplate && current.username && (!current.url || current.url === prevAutoUrl)) {
-            url = nextNetwork.urlTemplate.replace('{username}', current.username);
-        }
-        updateItem(index, { name, url });
-    };
-
     return (
-        <div className="space-y-2">
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-1.5">
             {items.map((item, index) => {
                 const network = networkForName(item.name);
                 return (
-                    <div key={item.id} className="group relative flex items-center gap-2 text-xs">
-                        <img
-                            src={network ? `${import.meta.env.BASE_URL}${network.icon}` : undefined}
-                            alt={item.name || t('resume.ui.socialNetwork', 'Red')}
-                            className="h-4 w-4 shrink-0"
-                        />
+                    <span
+                        key={item.id}
+                        className="inline-flex items-center gap-1 border border-neutral-200 bg-neutral-50 rounded px-1.5 py-0.5"
+                    >
+                        {network && (
+                            <img
+                                src={`${import.meta.env.BASE_URL}${network.icon}`}
+                                alt=""
+                                className="h-3.5 w-3.5 shrink-0"
+                            />
+                        )}
                         <InlineSelect
                             value={item.name}
                             onChange={(e) => handleNetworkChange(index, e.target.value)}
-                            className="w-32 shrink-0"
+                            className="w-24 text-[11px]"
                         >
                             {catalog.map((networkOption) => (
                                 <option key={networkOption.id} value={networkOption.name}>
@@ -70,24 +86,18 @@ export const SocialMediaEditor: React.FC<SocialMediaEditorProps> = ({
                         </InlineSelect>
                         <InlineInput
                             value={item.username}
-                            onChange={(e) => updateItem(index, { username: e.target.value })}
-                            placeholder={t('resume.ui.socialUsername', 'Usuario')}
-                            className="w-28 shrink-0"
-                        />
-                        <InlineInput
-                            value={item.url}
-                            onChange={(e) => updateItem(index, { url: e.target.value })}
-                            placeholder="https://..."
-                            className="flex-1"
+                            onChange={(e) => handleUsernameChange(index, e.target.value)}
+                            placeholder={t('resume.ui.socialUsername', 'usuario')}
+                            className="w-24 text-[11px]"
                         />
                         <button
                             type="button"
                             onClick={() => removeItem(index)}
-                            className="shrink-0 text-red-400 hover:text-red-600 transition-colors cursor-pointer"
+                            className="text-red-400 hover:text-red-600 transition-colors cursor-pointer"
                         >
                             ✕
                         </button>
-                    </div>
+                    </span>
                 );
             })}
             <button

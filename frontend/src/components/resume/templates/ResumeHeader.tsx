@@ -12,6 +12,7 @@ interface ResumeHeaderProps {
     updateField: UseResumeFormReturn<BaseResumeData>['updateField'];
     setImageFile: UseResumeFormReturn<BaseResumeData>['setImageFile'];
     imagePreviewUrl: string | null;
+    extra?: React.ReactNode;
 }
 
 export const ResumeHeader: React.FC<ResumeHeaderProps> = ({
@@ -19,6 +20,7 @@ export const ResumeHeader: React.FC<ResumeHeaderProps> = ({
     updateField,
     setImageFile,
     imagePreviewUrl,
+    extra,
 }) => {
     const { t } = useTranslation();
 
@@ -133,6 +135,8 @@ export const ResumeHeader: React.FC<ResumeHeaderProps> = ({
                         {t('resume.ui.addDriving', '+ Añadir conducción')}
                     </button>
                 )}
+
+                {extra}
             </div>
         </header>
     );

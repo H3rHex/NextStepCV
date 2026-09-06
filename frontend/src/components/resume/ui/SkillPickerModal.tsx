@@ -90,11 +90,6 @@ export const SkillPickerModal: React.FC<SkillPickerModalProps> = ({
                                         : 'bg-white border-neutral-200 text-neutral-700 hover:border-blue-300'
                                 }`}
                             >
-                                <img
-                                    src={`${import.meta.env.BASE_URL}${item.icon}`}
-                                    alt={item.name}
-                                    className="h-4 w-4 shrink-0"
-                                />
                                 <span className="truncate">{item.name}</span>
                                 {active && <span className="ml-auto text-blue-600">✓</span>}
                             </button>

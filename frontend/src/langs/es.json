@@ -13,7 +13,7 @@
             "technicalSkills": "Habilidades técnicas",
             "programmingLanguages": "Lenguajes de programación",
             "frameworks": "Frameworks",
-            "socialMedia": "Redes sociales y portafolio"
+            "educationLanguages": "Educación e idiomas"
         },
         "placeholders": {
             "firstName": "Nombre",
@@ -51,10 +51,9 @@
             "addSkill": "Añadir",
             "searchSkill": "Buscar...",
             "done": "Listo",
-            "website": "Web / Portafolio",
+            "website": "Web",
             "addSocialMedia": "+ Agregar red social",
-            "socialNetwork": "Red",
-            "socialUsername": "Usuario"
+            "socialUsername": "usuario"
         },
         "image": {
             "change": "Cambiar",
