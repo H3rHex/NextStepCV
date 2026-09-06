@@ -4,15 +4,15 @@ import Header from "./components/layout/Header";
 import type { ResumeType } from "./components/layout/ResumeTypeSelector";
 import { ResumePage } from "./components/resume/ResumePage";
 import GenericTemplate from "./components/resume/templates/GenericTemplate";
-import type { BaseResumeData } from "./components/resume/types/base";
+import type { AnyResumeData } from "./components/resume/types";
 import type { ResumeSubmitPayload } from "./hooks/useResumeForm";
-import { getInitialResumeData } from "./hooks/useResumeForm";
+import { getInitialResumeData, useResumeForm } from "./hooks/useResumeForm";
 
 function App() {
   const { t, i18n } = useTranslation();
   const [currentType, setCurrentType] = useState<ResumeType>('general');
 
-  const handleSave = async ({ formData, data, imageFile }: ResumeSubmitPayload<BaseResumeData>) => {
+  const handleSave = async ({ formData, data, imageFile }: ResumeSubmitPayload<AnyResumeData>) => {
     const baseUrl = import.meta.env.VITE_API_BASE_URL;
     if (!baseUrl) {
       console.warn(t('resume.errors.apiUrlNotSet', 'VITE_API_BASE_URL no definido. No se puede enviar al backend.'));
@@ -47,19 +47,28 @@ function App() {
       console.error(t('resume.errors.saveCatch', 'Error al guardar el resume:'), error);
     }
   };
-  const initialData = currentType === 'general'
-    ? getInitialResumeData('general')
-    : getInitialResumeData('developer');
+
+  const initialData = getInitialResumeData(currentType);
+
+  const form = useResumeForm<AnyResumeData>({
+    initialData,
+    onSubmit: handleSave,
+    storageKey: `resume-${currentType}`,
+  });
 
   return (
     <>
       <Header currentType={currentType} onSelectType={setCurrentType} />
       <main className="flex-1 py-8 px-4">
-        <ResumePage>
+        <ResumePage onSave={form.handleSubmit} onReset={form.reset} canSave={form.isDirty}>
           <GenericTemplate
-            initialData={initialData}
-            onSave={handleSave}
-            storageKey={`resume-${currentType}`}
+            data={form.data}
+            updateField={form.updateField}
+            updateNestedField={form.updateNestedField}
+            addItem={form.addItem}
+            removeItem={form.removeItem}
+            setImageFile={form.setImageFile}
+            imagePreviewUrl={form.imagePreviewUrl}
           />
         </ResumePage>
       </main>

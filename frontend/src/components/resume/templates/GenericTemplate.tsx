@@ -1,8 +1,8 @@
 // src/components/resume/templates/GenericTemplate.tsx
 import type React from 'react';
 import { useTranslation } from 'react-i18next';
-import { createEmptyEducation, createEmptyExperience, createEmptyLanguage, useResumeForm } from '../../../hooks/useResumeForm';
-import type { ResumeSubmitPayload } from '../../../hooks/useResumeForm';
+import type { UseResumeFormReturn } from '../../../hooks/useResumeForm';
+import { createEmptyEducation, createEmptyExperience, createEmptyLanguage } from '../../../hooks/useResumeForm';
 import type { BaseResumeData, EducationItem, ExperienceItem, LanguageItem } from '../types';
 
 import { InlineDatePicker } from '../ui/InlineDatePicker';
@@ -14,34 +14,25 @@ import { ItemContainer } from '../ui/ItemContainer';
 import { SectionContainer } from '../ui/SelectionContainer';
 
 interface GenericTemplateProps {
-    initialData: BaseResumeData;
-    onSave?: (payload: ResumeSubmitPayload<BaseResumeData>) => Promise<void>;
-    storageKey?: string;
+    data: BaseResumeData;
+    updateField: UseResumeFormReturn<BaseResumeData>['updateField'];
+    updateNestedField: UseResumeFormReturn<BaseResumeData>['updateNestedField'];
+    addItem: UseResumeFormReturn<BaseResumeData>['addItem'];
+    removeItem: UseResumeFormReturn<BaseResumeData>['removeItem'];
+    setImageFile: UseResumeFormReturn<BaseResumeData>['setImageFile'];
+    imagePreviewUrl: string | null;
 }
 
-export const GenericTemplate: React.FC<GenericTemplateProps> = ({ 
-    initialData, 
-    onSave,
-    storageKey = 'resume-general'
+export const GenericTemplate: React.FC<GenericTemplateProps> = ({
+    data,
+    updateField,
+    updateNestedField,
+    addItem,
+    removeItem,
+    setImageFile,
+    imagePreviewUrl,
 }) => {
     const { t } = useTranslation();
-
-    const {
-        data,
-        updateField,
-        updateNestedField,
-        addItem,
-        removeItem,
-        setImageFile,
-        imagePreviewUrl,
-        handleSubmit,
-        isDirty,
-        reset,
-    } = useResumeForm<BaseResumeData>({
-        initialData,
-        onSubmit: onSave,
-        storageKey,
-    });
 
     const updatePersonalInfo = (field: keyof BaseResumeData['personalInfo'], value: string) => {
         updateField('personalInfo', { ...data.personalInfo, [field]: value });
@@ -243,24 +234,6 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
                     ))}
                 </div>
             </SectionContainer>
-
-            <div className="mt-8 pt-6 border-t border-neutral-200 flex justify-end gap-3">
-                <button
-                    type="button"
-                    onClick={reset}
-                    className="px-4 py-2 text-sm font-medium text-neutral-700 bg-neutral-100 hover:bg-neutral-200 rounded transition-colors"
-                >
-                    {t('resume.actions.reset', 'Restablecer')}
-                </button>
-                <button
-                    type="button"
-                    onClick={handleSubmit}
-                    disabled={!isDirty}
-                    className="px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 disabled:bg-blue-300 disabled:cursor-not-allowed rounded transition-colors"
-                >
-                    {t('resume.actions.save', 'Guardar')}
-                </button>
-            </div>
 
         </article>
     );
