@@ -1,6 +1,6 @@
 {% macro date_range(item, t) -%}
     {% set end = item.endDate if item.endDate and item.endDate != 'present' else t('labels.present') -%}
-    {{ t('labels.from') }} {{ item.startDate }} — {{ t('labels.to') }} {{ end }}
+    {{ item.startDate }} — {{ end }}
 {%- endmacro %}
 
 {% macro bullet_list(items) -%}
