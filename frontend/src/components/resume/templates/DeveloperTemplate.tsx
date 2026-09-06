@@ -306,27 +306,26 @@ export const DeveloperTemplate: React.FC<DeveloperTemplateProps> = ({
                 )}
 
                 <SectionContainer title={t('resume.sections.educationLanguages', 'Educación e idiomas')}>
-                    <div className="grid grid-cols-2 gap-5">
+                    <div className="grid grid-cols-[3fr_2fr] gap-5">
                         <div>
                             <div className={MINI_TITLE}>{t('resume.sections.education')}</div>
                             <div className="space-y-2">
                                 {data.education.map((edu: EducationItem, index: number) => (
                                     <ItemContainer key={edu.id} onRemove={() => removeItem('education', index)}>
                                         <div className="text-[12.5px] space-y-0.5">
-                                            <div className="flex justify-between items-baseline gap-2">
-                                                <InlineInput
-                                                    value={edu.degree}
-                                                    onChange={(e) => updateEducation(index, 'degree', e.target.value)}
-                                                    placeholder="Título/Grado"
-                                                    className="font-semibold text-neutral-900 flex-1"
-                                                />
-                                                <InlineDatePicker
-                                                    startDate={edu.startDate}
-                                                    endDate={edu.endDate}
-                                                    onStartDateChange={(value) => updateEducationDate(index, 'startDate', value)}
-                                                    onEndDateChange={(value) => updateEducationDate(index, 'endDate', value)}
-                                                />
-                                            </div>
+                                            <InlineInput
+                                                value={edu.degree}
+                                                onChange={(e) => updateEducation(index, 'degree', e.target.value)}
+                                                placeholder="Título/Grado"
+                                                className="font-semibold text-neutral-900"
+                                            />
+                                            <InlineDatePicker
+                                                startDate={edu.startDate}
+                                                endDate={edu.endDate}
+                                                onStartDateChange={(value) => updateEducationDate(index, 'startDate', value)}
+                                                onEndDateChange={(value) => updateEducationDate(index, 'endDate', value)}
+                                                className="text-[11px]"
+                                            />
                                             <InlineInput
                                                 value={edu.institution}
                                                 onChange={(e) => updateEducation(index, 'institution', e.target.value)}
@@ -347,22 +346,22 @@ export const DeveloperTemplate: React.FC<DeveloperTemplateProps> = ({
                         </div>
                         <div>
                             <div className={MINI_TITLE}>{t('resume.sections.languages')}</div>
-                            <div className="flex flex-wrap gap-2">
+                            <div className="flex flex-wrap gap-1.5">
                                 {data.languages.map((lang: LanguageItem, index: number) => (
                                     <span
                                         key={lang.language + index}
-                                        className="group relative inline-flex items-center gap-1 border border-neutral-200 bg-neutral-50 rounded px-1.5 py-0.5 text-xs"
+                                        className="group relative inline-flex items-center gap-1 border border-neutral-200 bg-neutral-50 rounded px-1.5 py-0.5 text-[11px]"
                                     >
                                         <InlineInputCommit
                                             value={lang.language}
                                             onCommit={(value) => updateLanguage(index, 'language', value)}
                                             placeholder="Idioma"
-                                            className="font-semibold text-neutral-700 w-16"
+                                            className="font-medium text-neutral-600 w-14 text-[11px]"
                                         />
                                         <InlineSelect
                                             value={lang.proficiency}
                                             onChange={(e) => updateLanguage(index, 'proficiency', e.target.value)}
-                                            className="w-20 text-[11px]"
+                                            className="w-20 text-[10.5px]"
                                         >
                                             <option value="a1">A1</option>
                                             <option value="a2">A2</option>
