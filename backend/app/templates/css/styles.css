@@ -126,13 +126,9 @@ ul {
 }
 
 .item-title {
-    font-size: 10.5pt;
+    font-size: 9.5pt;
     font-weight: 600;
     color: #171717;
-}
-
-.item-title--edu {
-    font-size: 9.5pt;
 }
 
 .item-lang {

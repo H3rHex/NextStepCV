@@ -139,7 +139,7 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
                 <div className="space-y-4">
                     {data.experience.map((exp: ExperienceItem, index: number) => (
                         <ItemContainer key={exp.id} onRemove={() => removeItem('experience', index)}>
-                            <div className="flex justify-between items-baseline gap-4 text-sm">
+                            <div className="flex justify-between items-baseline gap-4 text-xs">
                                 <div className="flex gap-1 font-semibold text-neutral-900 flex-1 items-baseline">
                                     <InlineInput
                                         value={exp.role}
@@ -173,7 +173,7 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
                 <div className="space-y-3">
                     {data.education.map((edu: EducationItem, index: number) => (
                         <ItemContainer key={edu.id} onRemove={() => removeItem('education', index)}>
-                            <div className="flex justify-between items-baseline gap-4 text-sm">
+                            <div className="flex justify-between items-baseline gap-4 text-xs">
                                 <div className="flex-1 space-y-1">
                                     <InlineInput
                                         value={edu.degree}
