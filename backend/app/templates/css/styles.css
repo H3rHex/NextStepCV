@@ -98,7 +98,7 @@ ul {
 /* Secciones */
 
 .section {
-    margin-bottom: 6mm;
+    margin-bottom: 5mm;
     page-break-inside: avoid;
 }
 
@@ -126,7 +126,7 @@ ul {
 /* Items */
 
 .item {
-    margin-bottom: 5mm;
+    margin-bottom: 4mm;
     page-break-inside: avoid;
 }
 
@@ -201,4 +201,41 @@ ul {
 
 .skills-col {
     margin-bottom: 3mm;
+}
+
+/* Skills en línea (escritura compacta) */
+
+.skills-row {
+    margin-bottom: 3pt;
+}
+
+.skills-row .tags {
+    display: inline;
+    margin-top: 0;
+}
+
+.skills-label {
+    font-size: 9pt;
+    color: #525252;
+}
+
+/* Dos columnas (educación + idiomas) */
+
+.two-col {
+    display: flex;
+    gap: 6mm;
+}
+
+.col {
+    flex: 1;
+    min-width: 0;
+}
+
+.col-title {
+    font-size: 8.5pt;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5pt;
+    color: #737373;
+    margin-bottom: 2.5mm;
 }

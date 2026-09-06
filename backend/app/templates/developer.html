@@ -2,42 +2,41 @@
 
 {% from "macros.html" import date_range, bullet_list, highlight_list %}
 
+{% block header_extra %}
+    {% if resume.socialMedia %}
+    <ul class="contact driving-contact">
+        {% for item in resume.socialMedia %}
+        <li class="contact-item">
+            {% if item.url %}<a href="{{ item.url }}">{{ item.name }}</a>{% else %}{{ item.name }}{% endif %}
+            {% if item.username %}: {{ item.username }}{% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+{% endblock %}
+
 {% block sections %}
     <section class="section">
         <h2 class="section-title">{{ t('sections.technicalSkills') }}</h2>
         {% if resume.technicalSkills.programmingLanguages %}
-        <div class="skills-col">
-            <div class="item-sub">{{ t('sections.programmingLanguages') }}</div>
+        <div class="skills-row">
+            <span class="skills-label">{{ t('sections.programmingLanguages') }}:</span>
             {{ bullet_list(resume.technicalSkills.programmingLanguages) }}
         </div>
         {% endif %}
         {% if resume.technicalSkills.frameworks %}
-        <div class="skills-col">
-            <div class="item-sub">{{ t('sections.frameworks') }}</div>
+        <div class="skills-row">
+            <span class="skills-label">{{ t('sections.frameworks') }}:</span>
             {{ bullet_list(resume.technicalSkills.frameworks) }}
         </div>
         {% endif %}
         {% if resume.technicalSkills.toolsAndDatabases %}
-        <div class="skills-col">
-            <div class="item-sub">{{ t('sections.toolsAndDatabases') }}</div>
+        <div class="skills-row">
+            <span class="skills-label">{{ t('sections.toolsAndDatabases') }}:</span>
             {{ bullet_list(resume.technicalSkills.toolsAndDatabases) }}
         </div>
         {% endif %}
     </section>
-
-    {% if resume.socialMedia %}
-    <section class="section">
-        <h2 class="section-title">{{ t('sections.socialMedia') }}</h2>
-        <ul class="contact">
-            {% for item in resume.socialMedia %}
-            <li class="contact-item">
-                {% if item.url %}<a href="{{ item.url }}">{{ item.name }}</a>{% else %}{{ item.name }}{% endif %}
-                {% if item.username %}: {{ item.username }}{% endif %}
-            </li>
-            {% endfor %}
-        </ul>
-    </section>
-    {% endif %}
 
     <section class="section">
         <h2 class="section-title">{{ t('sections.experience') }}</h2>
@@ -77,27 +76,31 @@
     {% endif %}
 
     <section class="section">
-        <h2 class="section-title">{{ t('sections.education') }}</h2>
-        {% for item in resume.education %}
-        <div class="item">
-            <div class="item-head">
-                <div class="item-title item-title--edu">{{ item.degree }}</div>
-                <span class="item-date">{{ date_range(item, t) }}</span>
+        <h2 class="section-title">{{ t('sections.educationLanguages') }}</h2>
+        <div class="two-col">
+            <div class="col">
+                <div class="col-title">{{ t('sections.education') }}</div>
+                {% for item in resume.education %}
+                <div class="item">
+                    <div class="item-head">
+                        <div class="item-title item-title--edu">{{ item.degree }}</div>
+                        <span class="item-date">{{ date_range(item, t) }}</span>
+                    </div>
+                    <div class="item-sub">{{ item.institution }}</div>
+                </div>
+                {% endfor %}
             </div>
-            <div class="item-sub">{{ item.institution }}</div>
-        </div>
-        {% endfor %}
-    </section>
-
-    <section class="section">
-        <h2 class="section-title">{{ t('sections.languages') }}</h2>
-        {% for item in resume.languages %}
-        <div class="item">
-            <div class="item-lang">
-                <span class="item-title">{{ item.language }}</span>
-                <span class="proficiency">{{ t('proficiencies.' + item.proficiency) }}</span>
+            <div class="col">
+                <div class="col-title">{{ t('sections.languages') }}</div>
+                {% for item in resume.languages %}
+                <div class="item">
+                    <div class="item-lang">
+                        <span class="item-title">{{ item.language }}</span>
+                        <span class="proficiency">{{ t('proficiencies.' + item.proficiency) }}</span>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
         </div>
-        {% endfor %}
     </section>
 {% endblock %}
