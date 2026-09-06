@@ -2,8 +2,8 @@
 import type React from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useCatalog } from '../../../hooks/useCatalog';
 import type { CatalogItem } from '../../../hooks/useCatalog';
+import { useCatalog } from '../../../hooks/useCatalog';
 import type { UseResumeFormReturn } from '../../../hooks/useResumeForm';
 import { createEmptyEducation, createEmptyExperience, createEmptyLanguage } from '../../../hooks/useResumeForm';
 import type {
@@ -26,7 +26,13 @@ import { SkillPickerModal } from '../ui/SkillPickerModal';
 import { SocialMediaEditor } from '../ui/SocialMediaEditor';
 import { ResumeHeader } from './ResumeHeader';
 
-type SkillCategory = 'languages' | 'frameworks';
+type SkillCategory = 'languages' | 'frameworks' | 'tools';
+
+const SKILL_FIELDS: Record<SkillCategory, keyof DeveloperTechnicalSkills> = {
+    languages: 'programmingLanguages',
+    frameworks: 'frameworks',
+    tools: 'toolsAndDatabases',
+};
 
 interface DeveloperTemplateProps {
     data: DeveloperResumeData;
@@ -103,6 +109,7 @@ export const DeveloperTemplate: React.FC<DeveloperTemplateProps> = ({
 
     const languagesCatalog = useCatalog('languages/languages.json');
     const frameworksCatalog = useCatalog('frameworks/frameworks.json');
+    const toolsCatalog = useCatalog('tools/tools.json');
     const socialCatalog = useCatalog('social/social.json');
 
     const skills: DeveloperTechnicalSkills = data.technicalSkills ?? EMPTY_SKILLS;
@@ -143,7 +150,7 @@ export const DeveloperTemplate: React.FC<DeveloperTemplateProps> = ({
     };
 
     const toggleSkill = (category: SkillCategory, name: string) => {
-        const field = category === 'languages' ? 'programmingLanguages' : 'frameworks';
+        const field = SKILL_FIELDS[category];
         const current = skills[field];
         const next = current.includes(name)
             ? current.filter((skill) => skill !== name)
@@ -158,15 +165,18 @@ export const DeveloperTemplate: React.FC<DeveloperTemplateProps> = ({
     const skillsCatalog: Record<SkillCategory, CatalogItem[]> = {
         languages: languagesCatalog.items,
         frameworks: frameworksCatalog.items,
+        tools: toolsCatalog.items,
     };
 
     const pickerItems = activePicker ? skillsCatalog[activePicker] : [];
-    const pickerSelected = activePicker ? skills[activePicker === 'languages' ? 'programmingLanguages' : 'frameworks'] : [];
+    const pickerSelected = activePicker ? skills[SKILL_FIELDS[activePicker]] : [];
 
     const pickerTitle =
         activePicker === 'languages'
             ? t('resume.sections.programmingLanguages', 'Lenguajes de programación')
-            : t('resume.sections.frameworks', 'Frameworks');
+            : activePicker === 'frameworks'
+              ? t('resume.sections.frameworks', 'Frameworks')
+              : t('resume.sections.toolsAndDatabases', 'Herramientas y bases de datos');
 
     const headerExtra = (
         <div className="pt-1 flex flex-col gap-1.5 text-xs">
@@ -219,6 +229,13 @@ export const DeveloperTemplate: React.FC<DeveloperTemplateProps> = ({
                             names={skills.frameworks}
                             onToggle={(name) => toggleSkill('frameworks', name)}
                             onOpenPicker={() => setActivePicker('frameworks')}
+                            addLabel={t('resume.ui.addSkill', 'Añadir')}
+                        />
+                        <SkillLine
+                            label={t('resume.sections.toolsAndDatabases', 'Herramientas y bases de datos')}
+                            names={skills.toolsAndDatabases}
+                            onToggle={(name) => toggleSkill('tools', name)}
+                            onOpenPicker={() => setActivePicker('tools')}
                             addLabel={t('resume.ui.addSkill', 'Añadir')}
                         />
                     </div>
@@ -274,7 +291,7 @@ export const DeveloperTemplate: React.FC<DeveloperTemplateProps> = ({
                                     <button
                                         type="button"
                                         onClick={() => toggleExperienceDescription(index, true)}
-                                        className="cursor-pointer text-blue-600 hover:text-blue-800 font-medium transition-colors"
+                                        className="cursor-pointer text-blue-600 hover:text-blue-800 text-sm font-medium transition-colors"
                                     >
                                         {t('resume.ui.addDescription', '+ Añadir descripción')}
                                     </button>
