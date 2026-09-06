@@ -21,6 +21,7 @@ function App() {
     }
 
     formData.set('lang', i18n.resolvedLanguage || 'es');
+    formData.set('resume_type', currentType);
 
     try {
       const response = await fetch(`${baseUrl}/api/v1/create_resume`, {

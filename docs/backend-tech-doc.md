@@ -358,7 +358,12 @@ DeveloperResumeData(BaseResumeData):
 
 ### Inferencia del tipo (`app/schemas/__init__.py`)
 
-El frontend **no envía un campo `resume_type`**, por lo que `parse_resume_data()` infiere el tipo **a partir de la presencia de `technicalSkills`** (campo exclusivo de `DeveloperResumeData`):
+El frontend envía el campo **`resume_type`** (`'general'` | `'developer'`) en el formulario de `/api/v1/create_resume`, que tiene prioridad en `parse_resume_data(..., resume_type=...)`:
+
+- `resume_type == 'developer'` → `DeveloperResumeData`.
+- `resume_type == 'general'` → `BaseResumeData` (ignora posibles campos extra).
+
+Si **no llega** `resume_type` (clientes antiguos), se mantiene la heurística por la presencia de `technicalSkills` (campo exclusivo de `DeveloperResumeData`):
 
 - Si `technicalSkills` está presente → `DeveloperResumeData`.
 - Si no → `BaseResumeData`.

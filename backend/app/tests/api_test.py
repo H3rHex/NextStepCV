@@ -16,6 +16,8 @@ from fastapi.testclient import TestClient
 
 from app.core.config import settings
 from app.main import app
+from app.schemas import BaseResumeData, DeveloperResumeData
+from app.services.resume import parse_payload
 from app.storage.store import store
 from app.tests.mock_data import DEVELOPER_JSON, GENERAL_JSON, write_mock_photo
 
@@ -86,6 +88,24 @@ def main() -> None:
         )
         assert r.status_code == 422, f"no-imagen: {r.status_code}"
         print("8. imagen no-imagen -> 422 OK")
+
+        # 9) resume_type fuerza la plantilla aunque haya technicalSkills
+        assert isinstance(
+            parse_payload(json.dumps(DEVELOPER_JSON), resume_type="general"),
+            BaseResumeData,
+        ), "resume_type=general debe producir plantilla genérica"
+        assert isinstance(
+            parse_payload(json.dumps(DEVELOPER_JSON), resume_type="developer"),
+            DeveloperResumeData,
+        ), "resume_type=developer debe producir plantilla developer"
+        r = client.post(
+            f"{base}/create_resume",
+            data={"data": json.dumps(DEVELOPER_JSON), "resume_type": "general"},
+        )
+        assert r.status_code == 201, f"resume_type: {r.status_code} {r.text}"
+        r = client.get(r.json()["download_url"])
+        assert r.status_code == 200 and r.content[:5] == b"%PDF-", "resume_type: PDF no válido"
+        print("9. resume_type fuerza la plantilla OK")
 
     shutil.rmtree(settings.pdf_output_dir, ignore_errors=True)
     print("TODOS LOS TESTS DE API PASARON ✓")

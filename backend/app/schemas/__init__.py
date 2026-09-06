@@ -21,12 +21,17 @@ from app.schemas.developer import (
 AnyResumeData = BaseResumeData | DeveloperResumeData
 
 
-def parse_resume_data(raw: dict, *, strict: bool = False) -> AnyResumeData:
+def parse_resume_data(raw: dict, *, resume_type: str | None = None) -> AnyResumeData:
     """Infiere el tipo de currículo a partir del JSON recibido.
 
-    El frontend no envía `resume_type`, así que se discrimina por la
-    presencia de `technicalSkills` (campo exclusivo de DeveloperResumeData).
+    El frontend envía `resume_type` explícito ('general' | 'developer')
+    junto al formulario; si no llega, se discrimina por la presencia de
+    `technicalSkills` (campo exclusivo de DeveloperResumeData).
     """
+    if resume_type == "developer":
+        return DeveloperResumeData.model_validate(raw)
+    if resume_type == "general":
+        return BaseResumeData.model_validate(raw)
     if "technicalSkills" in raw:
         return DeveloperResumeData.model_validate(raw)
     return BaseResumeData.model_validate(raw)
