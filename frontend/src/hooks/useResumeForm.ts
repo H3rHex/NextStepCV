@@ -33,12 +33,12 @@ export interface UseResumeFormReturn<T extends AnyResumeData> {
   updateArrayField: <K extends keyof T>(field: K, value: T[K]) => void;
   
   addItem: (
-    field: 'experience' | 'education' | 'languages' | 'repositories' | 'socialMedia', 
+    field: 'experience' | 'education' | 'languages' | 'repositories', 
     item: any
   ) => void;
   
   removeItem: (
-    field: 'experience' | 'education' | 'languages' | 'repositories' | 'socialMedia', 
+    field: 'experience' | 'education' | 'languages' | 'repositories', 
     index: number
   ) => void;
   
@@ -158,7 +158,7 @@ const updateNestedField = useCallback((
   }, []);
   
   const addItem = useCallback((
-    field: 'experience' | 'education' | 'languages' | 'repositories' | 'socialMedia', 
+    field: 'experience' | 'education' | 'languages' | 'repositories', 
     item: any
   ) => {
     setData(prev => ({
@@ -168,7 +168,7 @@ const updateNestedField = useCallback((
   }, []);
 
   const removeItem = useCallback((
-    field: 'experience' | 'education' | 'languages' | 'repositories' | 'socialMedia', 
+    field: 'experience' | 'education' | 'languages' | 'repositories', 
     index: number
   ) => {
     setData(prev => ({
