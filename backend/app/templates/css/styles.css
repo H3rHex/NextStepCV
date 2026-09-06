@@ -231,6 +231,14 @@ ul {
     min-width: 0;
 }
 
+.col--wide {
+    flex: 3;
+}
+
+.col--narrow {
+    flex: 2;
+}
+
 .col-title {
     font-size: 8.5pt;
     font-weight: 600;
@@ -238,4 +246,31 @@ ul {
     letter-spacing: 0.5pt;
     color: #737373;
     margin-bottom: 2.5mm;
+}
+
+/* Educación: fecha bajo el título */
+
+.item-date--edu {
+    display: block;
+    padding-left: 0;
+    margin-top: 1pt;
+}
+
+.item-sub--edu {
+    margin-top: 1pt;
+}
+
+/* Idiomas: peso visual menor */
+
+.lang-item {
+    margin-bottom: 2mm;
+}
+
+.lang-item .item-title {
+    font-size: 8.5pt;
+    font-weight: 500;
+}
+
+.lang-item .proficiency {
+    font-size: 8pt;
 }

@@ -78,22 +78,20 @@
     <section class="section">
         <h2 class="section-title">{{ t('sections.educationLanguages') }}</h2>
         <div class="two-col">
-            <div class="col">
+            <div class="col col--wide">
                 <div class="col-title">{{ t('sections.education') }}</div>
                 {% for item in resume.education %}
                 <div class="item">
-                    <div class="item-head">
-                        <div class="item-title item-title--edu">{{ item.degree }}</div>
-                        <span class="item-date">{{ date_range(item, t) }}</span>
-                    </div>
-                    <div class="item-sub">{{ item.institution }}</div>
+                    <div class="item-title item-title--edu">{{ item.degree }}</div>
+                    <span class="item-date item-date--edu">{{ date_range(item, t) }}</span>
+                    <div class="item-sub item-sub--edu">{{ item.institution }}</div>
                 </div>
                 {% endfor %}
             </div>
-            <div class="col">
+            <div class="col col--narrow">
                 <div class="col-title">{{ t('sections.languages') }}</div>
                 {% for item in resume.languages %}
-                <div class="item">
+                <div class="item lang-item">
                     <div class="item-lang">
                         <span class="item-title">{{ item.language }}</span>
                         <span class="proficiency">{{ t('proficiencies.' + item.proficiency) }}</span>
