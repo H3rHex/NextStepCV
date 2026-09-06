@@ -36,6 +36,13 @@ function App() {
         );
       }
 
+      const result = await response.json();
+      const downloadUrl = result?.download_url;
+
+      if (downloadUrl) {
+        window.open(new URL(downloadUrl, baseUrl).href, '_blank', 'noopener,noreferrer');
+      }
+
       console.log(
         t('resume.success.saved', {
           imageName: imageFile?.name || t('common.none', 'ninguna'),

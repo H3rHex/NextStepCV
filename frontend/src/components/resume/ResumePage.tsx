@@ -43,7 +43,7 @@ export const ResumePage: React.FC<ResumePageProps> = ({
                         <button
                             type="button"
                             onClick={onReset}
-                            className="px-4 py-2 text-sm font-medium text-neutral-700 bg-neutral-100 hover:bg-neutral-200 rounded transition-colors"
+                            className="px-4 py-2 text-sm font-medium text-neutral-700 bg-neutral-100 cursor-pointer hover:bg-neutral-200 rounded transition-colors"
                         >
                             {t('resume.actions.reset', 'Restablecer')}
                         </button>
@@ -51,7 +51,7 @@ export const ResumePage: React.FC<ResumePageProps> = ({
                             type="button"
                             onClick={onSave}
                             disabled={!canSave}
-                            className="px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 disabled:bg-blue-300 disabled:cursor-not-allowed rounded transition-colors"
+                            className="px-4 py-2 text-sm font-medium text-white bg-blue-600 cursor-pointer hover:bg-blue-700 disabled:bg-blue-300 disabled:cursor-not-allowed rounded transition-colors"
                         >
                             {t('resume.actions.save', 'Guardar')}
                         </button>
