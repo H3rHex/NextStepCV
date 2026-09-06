@@ -88,7 +88,7 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
 
     return (
         <>
-        <article ref={ref} className="bg-white text-neutral-900 p-10 max-w-[210mm] min-h-[297mm] mx-auto font-sans leading-relaxed shadow-sm print:shadow-none">
+        <article ref={ref} className="bg-white text-neutral-900 p-10 max-w-[210mm] min-h-[297mm] mx-auto font-sans leading-[1.6] shadow-sm print:shadow-none">
 
             
             <header className="flex items-center gap-6 border-b border-neutral-200 pb-6 mb-6">
@@ -160,7 +160,7 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
                                         key={license}
                                         type="button"
                                         onClick={() => toggleDrivingLicense(license)}
-                                        className={`px-1.5 py-0.5 rounded border transition-colors ${active ? 'bg-blue-600 text-white border-blue-600' : 'bg-neutral-50 text-neutral-700 border-neutral-200 hover:border-blue-300'}`}
+                                        className={`px-1 py-0 rounded border transition-colors ${active ? 'bg-blue-600 text-white border-blue-600' : 'bg-neutral-50 text-neutral-700 border-neutral-200 hover:border-blue-300'}`}
                                     >
                                         {license}
                                     </button>
@@ -193,6 +193,7 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
                     onChange={(e) => updatePersonalInfo('summary', e.target.value)}
                     placeholder={t('resume.placeholders.summary', 'Resumen profesional...')}
                     rows={3}
+                    className="text-[13px] leading-[1.6]"
                 />
             </SectionContainer>
 
@@ -204,7 +205,7 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
                 <div className="space-y-4">
                     {data.experience.map((exp: ExperienceItem, index: number) => (
                         <ItemContainer key={exp.id} onRemove={() => removeItem('experience', index)}>
-                            <div className="flex justify-between items-baseline gap-4 text-xs">
+                            <div className="flex justify-between items-baseline gap-4 text-[12.5px]">
                                 <div className="flex gap-1 font-semibold text-neutral-900 flex-1 items-baseline">
                                     <InlineInput
                                         value={exp.role}
@@ -232,6 +233,7 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
                                         onChange={(e) => updateExperience(index, 'description', e.target.value)}
                                         placeholder={t('resume.placeholders.description', 'Describe tus responsabilidades y logros en el puesto...')}
                                         rows={2}
+                                        className="text-[12.5px] leading-[1.5]"
                                     />
                                     <button
                                         type="button"
@@ -263,7 +265,7 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
                 <div className="space-y-3">
                     {data.education.map((edu: EducationItem, index: number) => (
                         <ItemContainer key={edu.id} onRemove={() => removeItem('education', index)}>
-                            <div className="flex justify-between items-baseline gap-4 text-xs">
+                            <div className="flex justify-between items-baseline gap-4 text-[12.5px]">
                                 <div className="flex-1 space-y-1">
                                     <InlineInput
                                         value={edu.degree}
@@ -295,7 +297,7 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
                 onAdd={addLanguage}
                 addLabel="resume.ui.addLanguage"
             >
-                <div className="flex flex-wrap gap-4 text-xs">
+                <div className="flex flex-wrap gap-4 text-[12.5px]">
                     {data.languages.map((lang: LanguageItem, index: number) => (
                         <ItemContainer key={lang.language + index} onRemove={() => removeItem('languages', index)}>
                             <div className="flex items-center gap-1">
