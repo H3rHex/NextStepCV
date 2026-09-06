@@ -22,6 +22,9 @@
             "reset": "Reset",
             "save": "Save"
         },
+        "overflow": {
+            "warning": "Content exceeds the size of an A4 page and will generate more than one page"
+        },
         "ui": {
             "add": "Add",
             "remove": "Remove",

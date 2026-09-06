@@ -5,6 +5,8 @@ import type { UseResumeFormReturn } from '../../../hooks/useResumeForm';
 import { createEmptyEducation, createEmptyExperience, createEmptyLanguage } from '../../../hooks/useResumeForm';
 import type { BaseResumeData, EducationItem, ExperienceItem, LanguageItem } from '../types';
 
+import { useA4Overflow } from '../../../hooks/useA4Overflow';
+import { A4OverflowAdvertence } from '../../layout/A4OverflowAdvertence';
 import { InlineDatePicker } from '../ui/InlineDatePicker';
 import { InlineImageUpload } from '../ui/InlineImageUpload';
 import { InlineInput } from '../ui/InlineInput';
@@ -36,6 +38,7 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
     imagePreviewUrl,
 }) => {
     const { t } = useTranslation();
+    const { ref, overflowsA4 } = useA4Overflow();
 
     const updatePersonalInfo = (field: keyof BaseResumeData['personalInfo'], value: string) => {
         updateField('personalInfo', { ...data.personalInfo, [field]: value });
@@ -84,7 +87,8 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
     };
 
     return (
-        <article className="bg-white text-neutral-900 p-10 max-w-[210mm] min-h-[297mm] mx-auto font-sans leading-relaxed shadow-sm print:shadow-none">
+        <>
+        <article ref={ref} className="bg-white text-neutral-900 p-10 max-w-[210mm] min-h-[297mm] mx-auto font-sans leading-relaxed shadow-sm print:shadow-none">
 
             
             <header className="flex items-center gap-6 border-b border-neutral-200 pb-6 mb-6">
@@ -99,13 +103,13 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
                             value={data.personalInfo.firstName}
                             onChange={(e) => updatePersonalInfo('firstName', e.target.value)}
                             placeholder={t('resume.placeholders.firstName', 'Nombre')}
-                            className="text-2xl font-bold tracking-tight text-neutral-900"
+                            className="text-xl font-bold tracking-tight text-neutral-900"
                         />
                         <InlineInput
                             value={data.personalInfo.lastName}
                             onChange={(e) => updatePersonalInfo('lastName', e.target.value)}
                             placeholder={t('resume.placeholders.lastName', 'Apellidos')}
-                            className="text-2xl font-bold tracking-tight text-neutral-900"
+                            className="text-xl font-bold tracking-tight text-neutral-900"
                         />
                     </div>
 
@@ -113,7 +117,7 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
                         value={data.personalInfo.title}
                         onChange={(e) => updatePersonalInfo('title', e.target.value)}
                         placeholder={t('resume.placeholders.title', 'Título Profesional')}
-                        className="text-lg font-medium text-neutral-600"
+                        className="text-base font-medium text-neutral-600"
                     />
 
                     <div className="text-xs text-neutral-500 flex flex-wrap items-center gap-2">
@@ -323,6 +327,11 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
             </SectionContainer>
 
         </article>
+
+        {overflowsA4 && (
+           <A4OverflowAdvertence />
+        )}
+        </>
     );
 };
 

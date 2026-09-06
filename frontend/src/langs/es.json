@@ -22,6 +22,9 @@
             "reset": "Restablecer",
             "save": "Guardar"
         },
+        "overflow": {
+            "warning": "El contenido supera el tamaño de una página A4 y se generará más de una hoja"
+        },
         "ui": {
             "add": "Agregar",
             "remove": "Eliminar",
