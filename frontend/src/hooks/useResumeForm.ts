@@ -230,6 +230,8 @@ export function createEmptyExperience(): BaseResumeData['experience'][0] {
     startDate: '',
     endDate: '',
     highlights: [''],
+    description: '',
+    showDescription: false,
   };
 }
 
@@ -280,6 +282,9 @@ export function getInitialResumeData(type: 'general' | 'developer'): AnyResumeDa
     experience: [createEmptyExperience()],
     education: [createEmptyEducation()],
     languages: [createEmptyLanguage()],
+    drivingLicenses: [],
+    hasCar: false,
+    showDriving: false,
   };
   
   if (type === 'developer') {

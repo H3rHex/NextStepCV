@@ -5,7 +5,7 @@ interface SectionContainerProps {
     title: string;
     onAdd?: () => void;
     addLabel?: string;
-    children: React.ReactNode;
+    children?: React.ReactNode;
 }
 
 export const SectionContainer: React.FC<SectionContainerProps> = ({
@@ -25,7 +25,7 @@ export const SectionContainer: React.FC<SectionContainerProps> = ({
                     <button
                         onClick={onAdd}
                         type="button"
-                        className="text-xs text-blue-600 hover:text-blue-800 font-medium transition-colors"
+                        className="text-xs text-blue-600 hover:text-blue-800 font-medium transition-colors cursor-pointer"
                     >
                         {t(addLabel)}
                     </button>

@@ -1,53 +1,47 @@
 // src/components/resume/templates/GenericTemplate.tsx
 import type React from 'react';
 import { useTranslation } from 'react-i18next';
-import { createEmptyEducation, createEmptyExperience, createEmptyLanguage, useResumeForm } from '../../../hooks/useResumeForm';
-import type { ResumeSubmitPayload } from '../../../hooks/useResumeForm';
+import type { UseResumeFormReturn } from '../../../hooks/useResumeForm';
+import { createEmptyEducation, createEmptyExperience, createEmptyLanguage } from '../../../hooks/useResumeForm';
 import type { BaseResumeData, EducationItem, ExperienceItem, LanguageItem } from '../types';
 
 import { InlineDatePicker } from '../ui/InlineDatePicker';
 import { InlineImageUpload } from '../ui/InlineImageUpload';
 import { InlineInput } from '../ui/InlineInput';
+import { InlineInputCommit } from '../ui/InlineInputCommit';
 import { InlineSelect } from '../ui/InlineSelect';
 import { InlineTextArea } from '../ui/InlineTextArea';
 import { ItemContainer } from '../ui/ItemContainer';
 import { SectionContainer } from '../ui/SelectionContainer';
 
+const DRIVING_LICENSE_TYPES = ['AM', 'A1', 'A2', 'A', 'B', 'B1', 'C1', 'C', 'D1', 'D'];
+
 interface GenericTemplateProps {
-    initialData: BaseResumeData;
-    onSave?: (payload: ResumeSubmitPayload<BaseResumeData>) => Promise<void>;
-    storageKey?: string;
+    data: BaseResumeData;
+    updateField: UseResumeFormReturn<BaseResumeData>['updateField'];
+    updateNestedField: UseResumeFormReturn<BaseResumeData>['updateNestedField'];
+    addItem: UseResumeFormReturn<BaseResumeData>['addItem'];
+    removeItem: UseResumeFormReturn<BaseResumeData>['removeItem'];
+    setImageFile: UseResumeFormReturn<BaseResumeData>['setImageFile'];
+    imagePreviewUrl: string | null;
 }
 
-export const GenericTemplate: React.FC<GenericTemplateProps> = ({ 
-    initialData, 
-    onSave,
-    storageKey = 'resume-general'
+export const GenericTemplate: React.FC<GenericTemplateProps> = ({
+    data,
+    updateField,
+    updateNestedField,
+    addItem,
+    removeItem,
+    setImageFile,
+    imagePreviewUrl,
 }) => {
     const { t } = useTranslation();
-
-    const {
-        data,
-        updateField,
-        updateNestedField,
-        addItem,
-        removeItem,
-        setImageFile,
-        imagePreviewUrl,
-        handleSubmit,
-        isDirty,
-        reset,
-    } = useResumeForm<BaseResumeData>({
-        initialData,
-        onSubmit: onSave,
-        storageKey,
-    });
 
     const updatePersonalInfo = (field: keyof BaseResumeData['personalInfo'], value: string) => {
         updateField('personalInfo', { ...data.personalInfo, [field]: value });
     };
 
-    const updateExperience = (index: number, field: keyof ExperienceItem, value: string) => {
+    const updateExperience = (index: number, field: keyof ExperienceItem, value: string | boolean) => {
         updateNestedField('experience', index, field, value);
     };
 
@@ -73,8 +67,25 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
     
     const addLanguage = () => addItem('languages', createEmptyLanguage());
 
+    const toggleExperienceDescription = (index: number, show: boolean) => {
+        updateExperience(index, 'showDescription', show);
+    };
+
+    const toggleDriving = (show: boolean) => {
+        updateField('showDriving', show);
+    };
+
+    const toggleDrivingLicense = (license: string) => {
+        const current = data.drivingLicenses ?? [];
+        const next = current.includes(license)
+            ? current.filter((l) => l !== license)
+            : [...current, license];
+        updateField('drivingLicenses', next);
+    };
+
     return (
-        <article className="bg-white text-neutral-900 p-10 max-w-[210mm] min-h-[297mm] mx-auto font-sans leading-relaxed shadow-sm print:shadow-none">
+        <>
+        <article className="bg-white text-neutral-900 p-10 max-w-[210mm] min-h-[297mm] mx-auto font-sans leading-[1.6] shadow-sm print:shadow-none">
 
             
             <header className="flex items-center gap-6 border-b border-neutral-200 pb-6 mb-6">
@@ -89,13 +100,13 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
                             value={data.personalInfo.firstName}
                             onChange={(e) => updatePersonalInfo('firstName', e.target.value)}
                             placeholder={t('resume.placeholders.firstName', 'Nombre')}
-                            className="text-2xl font-bold tracking-tight text-neutral-900"
+                            className="text-xl font-bold tracking-tight text-neutral-900"
                         />
                         <InlineInput
                             value={data.personalInfo.lastName}
                             onChange={(e) => updatePersonalInfo('lastName', e.target.value)}
                             placeholder={t('resume.placeholders.lastName', 'Apellidos')}
-                            className="text-2xl font-bold tracking-tight text-neutral-900"
+                            className="text-xl font-bold tracking-tight text-neutral-900"
                         />
                     </div>
 
@@ -103,7 +114,7 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
                         value={data.personalInfo.title}
                         onChange={(e) => updatePersonalInfo('title', e.target.value)}
                         placeholder={t('resume.placeholders.title', 'Título Profesional')}
-                        className="text-lg font-medium text-neutral-600"
+                        className="text-base font-medium text-neutral-600"
                     />
 
                     <div className="text-xs text-neutral-500 flex flex-wrap items-center gap-2">
@@ -126,6 +137,51 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
                             className="w-auto min-w-120px"
                         />
                     </div>
+
+                    {data.showDriving ? (
+                        <div className="flex flex-row flex-wrap items-center gap-x-3 gap-y-1 pt-1 text-xs">
+                            <label className="flex items-center gap-1.5 text-neutral-700 cursor-pointer">
+                                <input
+                                    type="checkbox"
+                                    checked={!!data.hasCar}
+                                    onChange={(e) => updateField('hasCar', e.target.checked)}
+                                    className="accent-blue-600"
+                                />
+                                {t('resume.ui.hasCar', 'Tengo coche')}
+                            </label>
+                            <span className="text-neutral-400">{t('resume.ui.licenses', 'Permisos')}:</span>
+                            <div>
+                                {DRIVING_LICENSE_TYPES.map((license) => {
+                                    const active = (data.drivingLicenses ?? []).includes(license);
+                                    return (
+                                        <button
+                                            key={license}
+                                            type="button"
+                                            onClick={() => toggleDrivingLicense(license)}
+                                            className={`cursor-pointer px-1 py-0 rounded border transition-colors ${active ? 'bg-blue-600 text-white border-blue-600' : 'bg-neutral-50 text-neutral-700 border-neutral-200 hover:border-blue-300'}`}
+                                        >
+                                            {license}
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                            <button
+                                type="button"
+                                onClick={() => toggleDriving(false)}
+                                className="text-neutral-400 hover:text-neutral-600 underline transition-colors cursor-pointer"
+                            >
+                                {t('resume.ui.removeDriving', 'Quitar')}
+                            </button>
+                        </div>
+                    ) : (
+                        <button
+                            type="button"
+                            onClick={() => toggleDriving(true)}
+                            className="pt-1 text-xs text-blue-600 hover:text-blue-800 font-medium transition-colors cursor-pointer"
+                        >
+                            {t('resume.ui.addDriving', '+ Añadir conducción')}
+                        </button>
+                    )}
                 </div>
             </header>
 
@@ -136,6 +192,7 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
                     onChange={(e) => updatePersonalInfo('summary', e.target.value)}
                     placeholder={t('resume.placeholders.summary', 'Resumen profesional...')}
                     rows={3}
+                    className="text-[13px] leading-[1.6]"
                 />
             </SectionContainer>
 
@@ -147,7 +204,7 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
                 <div className="space-y-4">
                     {data.experience.map((exp: ExperienceItem, index: number) => (
                         <ItemContainer key={exp.id} onRemove={() => removeItem('experience', index)}>
-                            <div className="flex justify-between items-baseline gap-4 text-sm">
+                            <div className="flex justify-between items-baseline gap-4 text-[12.5px] mb-3">
                                 <div className="flex gap-1 font-semibold text-neutral-900 flex-1 items-baseline">
                                     <InlineInput
                                         value={exp.role}
@@ -168,6 +225,32 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
                                     onEndDateChange={(value) => updateExperienceDate(index, 'endDate', value)}
                                 />
                             </div>
+                            {exp.showDescription ? (
+                                <div>
+                                    <InlineTextArea
+                                        value={exp.description ?? ''}
+                                        onChange={(e) => updateExperience(index, 'description', e.target.value)}
+                                        placeholder={t('resume.placeholders.description', 'Describe tus responsabilidades y logros en el puesto...')}
+                                        rows={2}
+                                        className="text-[12.5px] leading-normal"
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={() => toggleExperienceDescription(index, false)}
+                                        className="cursor-pointer text-red-500 text-xs hover:text-red-700 transition-colors"
+                                    >
+                                        {t('resume.ui.removeDescription', '- Quitar descripción')}
+                                    </button>
+                                </div>
+                            ) : (
+                                <button
+                                    type="button"
+                                    onClick={() => toggleExperienceDescription(index, true)}
+                                    className="cursor-pointer text-blue-600 hover:text-blue-800 font-medium transition-colors"
+                                >
+                                    {t('resume.ui.addDescription', '+ Añadir descripción')}
+                                </button>
+                            )}
                         </ItemContainer>
                     ))}
                 </div>
@@ -181,7 +264,7 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
                 <div className="space-y-3">
                     {data.education.map((edu: EducationItem, index: number) => (
                         <ItemContainer key={edu.id} onRemove={() => removeItem('education', index)}>
-                            <div className="flex justify-between items-baseline gap-4 text-sm">
+                            <div className="flex justify-between items-baseline gap-4 text-[12.5px]">
                                 <div className="flex-1 space-y-1">
                                     <InlineInput
                                         value={edu.degree}
@@ -213,13 +296,13 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
                 onAdd={addLanguage}
                 addLabel="resume.ui.addLanguage"
             >
-                <div className="flex flex-wrap gap-4 text-xs">
+                <div className="flex flex-wrap gap-4 text-[12.5px]">
                     {data.languages.map((lang: LanguageItem, index: number) => (
                         <ItemContainer key={lang.language + index} onRemove={() => removeItem('languages', index)}>
                             <div className="flex items-center gap-1">
-                                <InlineInput
+                                <InlineInputCommit
                                     value={lang.language}
-                                    onChange={(e) => updateLanguage(index, 'language', e.target.value)}
+                                    onCommit={(value) => updateLanguage(index, 'language', value)}
                                     placeholder="Idioma"
                                     className="font-semibold text-neutral-700 w-24"
                                 />
@@ -244,25 +327,8 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
                 </div>
             </SectionContainer>
 
-            <div className="mt-8 pt-6 border-t border-neutral-200 flex justify-end gap-3">
-                <button
-                    type="button"
-                    onClick={reset}
-                    className="px-4 py-2 text-sm font-medium text-neutral-700 bg-neutral-100 hover:bg-neutral-200 rounded transition-colors"
-                >
-                    {t('resume.actions.reset', 'Restablecer')}
-                </button>
-                <button
-                    type="button"
-                    onClick={handleSubmit}
-                    disabled={!isDirty}
-                    className="px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 disabled:bg-blue-300 disabled:cursor-not-allowed rounded transition-colors"
-                >
-                    {t('resume.actions.save', 'Guardar')}
-                </button>
-            </div>
-
         </article>
+        </>
     );
 };
 

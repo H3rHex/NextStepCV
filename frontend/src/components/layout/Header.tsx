@@ -18,7 +18,7 @@ function Header({ currentType, onSelectType }: HeaderProps): React.JSX.Element {
                     <Heading as="h3">NextStepCV</Heading>
                     <Text>
                         <a
-                            className="hover:text-amber-50 transition-colors"
+                            className="hover:text-amber-50 transition-colors cursor-pointer"
                             href="https://github.com/H3rHex"
                             target="_blank"
                             rel="noopener noreferrer"

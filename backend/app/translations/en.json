@@ -8,7 +8,8 @@
     "technicalSkills": "Technical skills",
     "languagesAndFrameworks": "Languages and frameworks",
     "toolsAndDatabases": "Tools and databases",
-    "repositories": "Repositories"
+    "repositories": "Repositories",
+    "driving": "Driving licence"
   },
   "labels": {
     "email": "Email",
@@ -16,9 +17,11 @@
     "location": "Location",
     "website": "Website",
     "github": "GitHub",
-    "from": "From",
-    "to": "To",
-    "present": "Present"
+    "present": "Present",
+    "car": "Own vehicle",
+    "licenses": "Licences",
+    "yes": "Yes",
+    "no": "No"
   },
   "proficiencies": {
     "a1": "A1",

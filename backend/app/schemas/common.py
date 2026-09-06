@@ -21,6 +21,8 @@ class ExperienceItem(BaseModel):
     startDate: str
     endDate: str
     highlights: list[str]
+    description: str = ""
+    showDescription: bool = False
 
 
 class EducationItem(BaseModel):

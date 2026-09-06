@@ -10,7 +10,7 @@ export const Link: React.FC<LinkProps> = ({ href, children, className = '', ...p
     return (
         <a
             href={href}
-            className={`text-neutral-900 underline underline-offset-4 decoration-neutral-300 hover:decoration-neutral-900 transition-colors duration-200 ${className}`}
+            className={`text-neutral-900 underline underline-offset-4 decoration-neutral-300 hover:decoration-neutral-900 transition-colors duration-200 cursor-pointer ${className}`}
             {...props}
         >
             {children}
