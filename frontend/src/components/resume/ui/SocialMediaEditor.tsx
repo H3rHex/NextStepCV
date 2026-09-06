@@ -59,21 +59,12 @@ export const SocialMediaEditor: React.FC<SocialMediaEditorProps> = ({
 
     return (
         <div className="flex flex-wrap items-center gap-x-2 gap-y-1.5">
-            {items.map((item, index) => {
-                const network = networkForName(item.name);
-                return (
-                    <span
-                        key={item.id}
-                        className="inline-flex items-center gap-1 border border-neutral-200 bg-neutral-50 rounded px-1.5 py-0.5"
-                    >
-                        {network && (
-                            <img
-                                src={`${import.meta.env.BASE_URL}${network.icon}`}
-                                alt=""
-                                className="h-3.5 w-3.5 shrink-0"
-                            />
-                        )}
-                        <InlineSelect
+            {items.map((item, index) => (
+                <span
+                    key={item.id}
+                    className="inline-flex items-center gap-1 border border-neutral-200 bg-neutral-50 rounded px-1.5 py-0.5"
+                >
+                    <InlineSelect
                             value={item.name}
                             onChange={(e) => handleNetworkChange(index, e.target.value)}
                             className="w-24 text-[11px]"
@@ -98,8 +89,7 @@ export const SocialMediaEditor: React.FC<SocialMediaEditorProps> = ({
                             ✕
                         </button>
                     </span>
-                );
-            })}
+                ))}
             <button
                 type="button"
                 onClick={addItem}

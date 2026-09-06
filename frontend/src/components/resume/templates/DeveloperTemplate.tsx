@@ -176,7 +176,7 @@ export const DeveloperTemplate: React.FC<DeveloperTemplateProps> = ({
             ? t('resume.sections.programmingLanguages', 'Lenguajes de programación')
             : activePicker === 'frameworks'
               ? t('resume.sections.frameworks', 'Frameworks')
-              : t('resume.sections.toolsAndDatabases', 'Herramientas y bases de datos');
+              : t('resume.sections.toolsAndDatabases', 'Herramientas y otras habilidades');
 
     const headerExtra = (
         <div className="pt-1 flex flex-col gap-1.5 text-xs">
@@ -232,7 +232,7 @@ export const DeveloperTemplate: React.FC<DeveloperTemplateProps> = ({
                             addLabel={t('resume.ui.addSkill', 'Añadir')}
                         />
                         <SkillLine
-                            label={t('resume.sections.toolsAndDatabases', 'Herramientas y bases de datos')}
+                            label={t('resume.sections.toolsAndDatabases', 'Herramientas y otras habilidades')}
                             names={skills.toolsAndDatabases}
                             onToggle={(name) => toggleSkill('tools', name)}
                             onOpenPicker={() => setActivePicker('tools')}

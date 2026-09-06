@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 export interface CatalogItem {
     id: string;
     name: string;
-    icon: string;
     urlTemplate?: string;
 }
 

@@ -1,12 +1,12 @@
 [
-  { "id": "github", "name": "GitHub", "icon": "/social/logos/github.svg", "urlTemplate": "https://github.com/{username}" },
-  { "id": "linkedin", "name": "LinkedIn", "icon": "/social/logos/linkedin.svg", "urlTemplate": "https://linkedin.com/in/{username}" },
-  { "id": "x", "name": "X", "icon": "/social/logos/x.svg", "urlTemplate": "https://x.com/{username}" },
-  { "id": "instagram", "name": "Instagram", "icon": "/social/logos/instagram.svg", "urlTemplate": "https://instagram.com/{username}" },
-  { "id": "facebook", "name": "Facebook", "icon": "/social/logos/facebook.svg", "urlTemplate": "https://facebook.com/{username}" },
-  { "id": "telegram", "name": "Telegram", "icon": "/social/logos/telegram.svg", "urlTemplate": "https://t.me/{username}" },
-  { "id": "discord", "name": "Discord", "icon": "/social/logos/discord.svg", "urlTemplate": "https://discord.com/users/{username}" },
-  { "id": "youtube", "name": "YouTube", "icon": "/social/logos/youtube.svg", "urlTemplate": "https://youtube.com/@{username}" },
-  { "id": "gitlab", "name": "GitLab", "icon": "/social/logos/gitlab.svg", "urlTemplate": "https://gitlab.com/{username}" },
-  { "id": "stackoverflow", "name": "Stack Overflow", "icon": "/social/logos/stackoverflow.svg", "urlTemplate": "https://stackoverflow.com/users/{username}" }
+  { "id": "github", "name": "GitHub", "urlTemplate": "https://github.com/{username}" },
+  { "id": "linkedin", "name": "LinkedIn", "urlTemplate": "https://linkedin.com/in/{username}" },
+  { "id": "x", "name": "X", "urlTemplate": "https://x.com/{username}" },
+  { "id": "instagram", "name": "Instagram", "urlTemplate": "https://instagram.com/{username}" },
+  { "id": "facebook", "name": "Facebook", "urlTemplate": "https://facebook.com/{username}" },
+  { "id": "telegram", "name": "Telegram", "urlTemplate": "https://t.me/{username}" },
+  { "id": "discord", "name": "Discord", "urlTemplate": "https://discord.com/users/{username}" },
+  { "id": "youtube", "name": "YouTube", "urlTemplate": "https://youtube.com/@{username}" },
+  { "id": "gitlab", "name": "GitLab", "urlTemplate": "https://gitlab.com/{username}" },
+  { "id": "stackoverflow", "name": "Stack Overflow", "urlTemplate": "https://stackoverflow.com/users/{username}" }
 ]
