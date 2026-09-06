@@ -3,8 +3,9 @@ import { useTranslation } from 'react-i18next';
 import Header from "./components/layout/Header";
 import type { ResumeType } from "./components/layout/ResumeTypeSelector";
 import { ResumePage } from "./components/resume/ResumePage";
+import DeveloperTemplate from "./components/resume/templates/DeveloperTemplate";
 import GenericTemplate from "./components/resume/templates/GenericTemplate";
-import type { AnyResumeData } from "./components/resume/types";
+import type { AnyResumeData, DeveloperResumeData } from "./components/resume/types";
 import type { ResumeSubmitPayload } from "./hooks/useResumeForm";
 import { getInitialResumeData, useResumeForm } from "./hooks/useResumeForm";
 
@@ -68,15 +69,27 @@ function App() {
       <Header currentType={currentType} onSelectType={setCurrentType} />
       <main className="flex-1 py-8 px-4">
         <ResumePage onSave={form.handleSubmit} onReset={form.reset} canSave={form.isDirty}>
-          <GenericTemplate
-            data={form.data}
-            updateField={form.updateField}
-            updateNestedField={form.updateNestedField}
-            addItem={form.addItem}
-            removeItem={form.removeItem}
-            setImageFile={form.setImageFile}
-            imagePreviewUrl={form.imagePreviewUrl}
-          />
+          {currentType === 'developer' ? (
+            <DeveloperTemplate
+              data={form.data as DeveloperResumeData}
+              updateField={form.updateField}
+              updateNestedField={form.updateNestedField}
+              addItem={form.addItem}
+              removeItem={form.removeItem}
+              setImageFile={form.setImageFile}
+              imagePreviewUrl={form.imagePreviewUrl}
+            />
+          ) : (
+            <GenericTemplate
+              data={form.data}
+              updateField={form.updateField}
+              updateNestedField={form.updateNestedField}
+              addItem={form.addItem}
+              removeItem={form.removeItem}
+              setImageFile={form.setImageFile}
+              imagePreviewUrl={form.imagePreviewUrl}
+            />
+          )}
         </ResumePage>
       </main>
     </>

@@ -9,7 +9,11 @@
             "experience": "Experiencia Laboral",
             "education": "Educación",
             "languages": "Idiomas",
-            "driving": "Carnet de conducir"
+            "driving": "Carnet de conducir",
+            "technicalSkills": "Habilidades técnicas",
+            "programmingLanguages": "Lenguajes de programación",
+            "frameworks": "Frameworks",
+            "socialMedia": "Redes sociales y portafolio"
         },
         "placeholders": {
             "firstName": "Nombre",
@@ -43,7 +47,14 @@
             "licenses": "Permisos",
             "profilePhotoAlt": "Foto de perfil",
             "photoLabel": "FOTO",
-            "changePhoto": "Cambiar"
+            "changePhoto": "Cambiar",
+            "addSkill": "Añadir",
+            "searchSkill": "Buscar...",
+            "done": "Listo",
+            "website": "Web / Portafolio",
+            "addSocialMedia": "+ Agregar red social",
+            "socialNetwork": "Red",
+            "socialUsername": "Usuario"
         },
         "image": {
             "change": "Cambiar",
