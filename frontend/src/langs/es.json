@@ -8,13 +8,15 @@
             "summary": "Perfil",
             "experience": "Experiencia Laboral",
             "education": "Educación",
-            "languages": "Idiomas"
+            "languages": "Idiomas",
+            "driving": "Carnet de conducir"
         },
         "placeholders": {
             "firstName": "Nombre",
             "lastName": "Apellidos",
             "title": "Título Profesional",
-            "summary": "Resumen profesional..."
+            "summary": "Resumen profesional...",
+            "description": "Describe tus responsabilidades y logros en el puesto..."
         },
         "actions": {
             "reset": "Restablecer",
@@ -30,6 +32,12 @@
             "addEducation": "Agregar Educación",
             "addLanguage": "Agregar Idioma",
             "addHighlight": "+ Añadir logro",
+            "addDescription": "+ Añadir descripción",
+            "removeDescription": "- Quitar descripción",
+            "addDriving": "Añadir conducción",
+            "removeDriving": "Quitar",
+            "hasCar": "Vehículo propio",
+            "licenses": "Permisos",
             "profilePhotoAlt": "Foto de perfil",
             "photoLabel": "FOTO",
             "changePhoto": "Cambiar"

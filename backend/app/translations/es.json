@@ -8,7 +8,8 @@
     "technicalSkills": "Habilidades técnicas",
     "languagesAndFrameworks": "Lenguajes y frameworks",
     "toolsAndDatabases": "Herramientas y bases de datos",
-    "repositories": "Repositorios"
+    "repositories": "Repositorios",
+    "driving": "Carnet de conducir"
   },
   "labels": {
     "email": "Email",
@@ -18,7 +19,11 @@
     "github": "GitHub",
     "from": "Desde",
     "to": "Hasta",
-    "present": "Presente"
+    "present": "Presente",
+    "car": "Vehículo propio",
+    "licenses": "Permisos",
+    "yes": "Sí",
+    "no": "No"
   },
   "proficiencies": {
     "a1": "A1",

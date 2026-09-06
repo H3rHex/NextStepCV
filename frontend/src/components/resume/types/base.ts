@@ -6,4 +6,7 @@ export interface BaseResumeData {
     experience: ExperienceItem[];
     education: EducationItem[];
     languages: LanguageItem[];
+    drivingLicenses?: string[];
+    hasCar?: boolean;
+    showDriving?: boolean;
 }

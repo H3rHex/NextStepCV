@@ -14,6 +14,8 @@ import { InlineTextArea } from '../ui/InlineTextArea';
 import { ItemContainer } from '../ui/ItemContainer';
 import { SectionContainer } from '../ui/SelectionContainer';
 
+const DRIVING_LICENSE_TYPES = ['AM', 'A1', 'A2', 'A', 'B', 'B1', 'C1', 'C', 'D1', 'D'];
+
 interface GenericTemplateProps {
     data: BaseResumeData;
     updateField: UseResumeFormReturn<BaseResumeData>['updateField'];
@@ -39,7 +41,7 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
         updateField('personalInfo', { ...data.personalInfo, [field]: value });
     };
 
-    const updateExperience = (index: number, field: keyof ExperienceItem, value: string) => {
+    const updateExperience = (index: number, field: keyof ExperienceItem, value: string | boolean) => {
         updateNestedField('experience', index, field, value);
     };
 
@@ -64,6 +66,22 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
     const addEducation = () => addItem('education', createEmptyEducation());
     
     const addLanguage = () => addItem('languages', createEmptyLanguage());
+
+    const toggleExperienceDescription = (index: number, show: boolean) => {
+        updateExperience(index, 'showDescription', show);
+    };
+
+    const toggleDriving = (show: boolean) => {
+        updateField('showDriving', show);
+    };
+
+    const toggleDrivingLicense = (license: string) => {
+        const current = data.drivingLicenses ?? [];
+        const next = current.includes(license)
+            ? current.filter((l) => l !== license)
+            : [...current, license];
+        updateField('drivingLicenses', next);
+    };
 
     return (
         <article className="bg-white text-neutral-900 p-10 max-w-[210mm] min-h-[297mm] mx-auto font-sans leading-relaxed shadow-sm print:shadow-none">
@@ -118,6 +136,49 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
                             className="w-auto min-w-120px"
                         />
                     </div>
+
+                    {data.showDriving ? (
+                        <div className="flex flex-row flex-wrap items-center gap-x-3 gap-y-1 pt-1 text-xs">
+                            <label className="flex items-center gap-1.5 text-neutral-700">
+                                <input
+                                    type="checkbox"
+                                    checked={!!data.hasCar}
+                                    onChange={(e) => updateField('hasCar', e.target.checked)}
+                                    className="accent-blue-600"
+                                />
+                                {t('resume.ui.hasCar', 'Tengo coche')}
+                            </label>
+                            <span className="text-neutral-400">{t('resume.ui.licenses', 'Permisos')}:</span>
+                            {DRIVING_LICENSE_TYPES.map((license) => {
+                                const active = (data.drivingLicenses ?? []).includes(license);
+                                return (
+                                    <button
+                                        key={license}
+                                        type="button"
+                                        onClick={() => toggleDrivingLicense(license)}
+                                        className={`px-1.5 py-0.5 rounded border transition-colors ${active ? 'bg-blue-600 text-white border-blue-600' : 'bg-neutral-50 text-neutral-700 border-neutral-200 hover:border-blue-300'}`}
+                                    >
+                                        {license}
+                                    </button>
+                                );
+                            })}
+                            <button
+                                type="button"
+                                onClick={() => toggleDriving(false)}
+                                className="text-neutral-400 hover:text-neutral-600 underline transition-colors"
+                            >
+                                {t('resume.ui.removeDriving', 'Quitar')}
+                            </button>
+                        </div>
+                    ) : (
+                        <button
+                            type="button"
+                            onClick={() => toggleDriving(true)}
+                            className="pt-1 text-xs text-blue-600 hover:text-blue-800 font-medium transition-colors"
+                        >
+                            {t('resume.ui.addDriving', '+ Añadir conducción')}
+                        </button>
+                    )}
                 </div>
             </header>
 
@@ -160,6 +221,31 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
                                     onEndDateChange={(value) => updateExperienceDate(index, 'endDate', value)}
                                 />
                             </div>
+                            {exp.showDescription ? (
+                                <>
+                                    <InlineTextArea
+                                        value={exp.description ?? ''}
+                                        onChange={(e) => updateExperience(index, 'description', e.target.value)}
+                                        placeholder={t('resume.placeholders.description', 'Describe tus responsabilidades y logros en el puesto...')}
+                                        rows={2}
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={() => toggleExperienceDescription(index, false)}
+                                        className="text-xs text-neutral-500 hover:text-neutral-700 transition-colors"
+                                    >
+                                        {t('resume.ui.removeDescription', '- Quitar descripción')}
+                                    </button>
+                                </>
+                            ) : (
+                                <button
+                                    type="button"
+                                    onClick={() => toggleExperienceDescription(index, true)}
+                                    className="text-xs text-blue-600 hover:text-blue-800 font-medium transition-colors"
+                                >
+                                    {t('resume.ui.addDescription', '+ Añadir descripción')}
+                                </button>
+                            )}
                         </ItemContainer>
                     ))}
                 </div>

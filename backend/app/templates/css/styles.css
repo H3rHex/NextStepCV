@@ -91,6 +91,10 @@ ul {
     color: #a3a3a3;
 }
 
+.driving-contact {
+    margin-top: 2pt;
+}
+
 /* Secciones */
 
 .section {
@@ -109,6 +113,13 @@ ul {
 
 .profile-text {
     font-size: 10pt;
+    color: #404040;
+}
+
+.item-description {
+    margin-top: 2pt;
+    font-size: 9.5pt;
+    line-height: 1.5;
     color: #404040;
 }
 

@@ -33,6 +33,17 @@
                 <li class="contact-item">{{ resume.personalInfo.website }}</li>
                 {% endif %}
             </ul>
+
+            {% if resume.showDriving and (resume.drivingLicenses or resume.hasCar) %}
+            <ul class="contact driving-contact">
+                {% if resume.drivingLicenses %}
+                <li class="contact-item">{{ t('labels.licenses') }}: {{ resume.drivingLicenses | join(', ') }}</li>
+                {% endif %}
+                {% if resume.hasCar %}
+                <li class="contact-item">{{ t('labels.car') }}: {{ t('labels.' + ('yes' if resume.hasCar else 'no')) }}</li>
+                {% endif %}
+            </ul>
+            {% endif %}
         </div>
     </header>
 

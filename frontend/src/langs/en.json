@@ -8,13 +8,15 @@
             "summary": "Profile",
             "experience": "Work Experience",
             "education": "Education",
-            "languages": "Languages"
+            "languages": "Languages",
+            "driving": "Driving licence"
         },
         "placeholders": {
             "firstName": "First Name",
             "lastName": "Last Name",
             "title": "Professional Title",
-            "summary": "Professional summary..."
+            "summary": "Professional summary...",
+            "description": "Describe your responsibilities and achievements in the role..."
         },
         "actions": {
             "reset": "Reset",
@@ -30,6 +32,12 @@
             "addEducation": "Add Education",
             "addLanguage": "Add Language",
             "addHighlight": "+ Add highlight",
+            "addDescription": "+ Add description",
+            "removeDescription": "- Remove description",
+            "addDriving": "Add driving",
+            "removeDriving": "Remove",
+            "hasCar": "Own vehicle",
+            "licenses": "Licences",
             "profilePhotoAlt": "Profile photo",
             "photoLabel": "PHOTO",
             "changePhoto": "Change"

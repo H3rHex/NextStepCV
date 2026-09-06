@@ -16,6 +16,8 @@ export interface ExperienceItem {
     startDate: string;
     endDate: string | 'present'; 
     highlights: string[];
+    description?: string;
+    showDescription?: boolean;
 }
 
 export interface EducationItem {

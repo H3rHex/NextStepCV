@@ -27,6 +27,9 @@
                 </div>
                 <span class="item-date">{{ date_range(item, t) }}</span>
             </div>
+            {% if item.showDescription and item.description %}
+            <div class="item-description">{{ item.description }}</div>
+            {% endif %}
             {{ highlight_list(item.highlights) }}
         </div>
         {% endfor %}

@@ -5,7 +5,7 @@ interface SectionContainerProps {
     title: string;
     onAdd?: () => void;
     addLabel?: string;
-    children: React.ReactNode;
+    children?: React.ReactNode;
 }
 
 export const SectionContainer: React.FC<SectionContainerProps> = ({

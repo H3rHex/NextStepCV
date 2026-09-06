@@ -13,6 +13,9 @@ class BaseResumeData(BaseModel):
     experience: list[ExperienceItem]
     education: list[EducationItem]
     languages: list[LanguageItem]
+    drivingLicenses: list[str] = []
+    hasCar: bool = False
+    showDriving: bool = False
 
 
 __all__ = ["BaseResumeData"]
