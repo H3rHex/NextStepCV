@@ -8,6 +8,7 @@ import type { BaseResumeData, EducationItem, ExperienceItem, LanguageItem } from
 import { InlineDatePicker } from '../ui/InlineDatePicker';
 import { InlineImageUpload } from '../ui/InlineImageUpload';
 import { InlineInput } from '../ui/InlineInput';
+import { InlineInputCommit } from '../ui/InlineInputCommit';
 import { InlineSelect } from '../ui/InlineSelect';
 import { InlineTextArea } from '../ui/InlineTextArea';
 import { ItemContainer } from '../ui/ItemContainer';
@@ -208,9 +209,9 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
                     {data.languages.map((lang: LanguageItem, index: number) => (
                         <ItemContainer key={lang.language + index} onRemove={() => removeItem('languages', index)}>
                             <div className="flex items-center gap-1">
-                                <InlineInput
+                                <InlineInputCommit
                                     value={lang.language}
-                                    onChange={(e) => updateLanguage(index, 'language', e.target.value)}
+                                    onCommit={(value) => updateLanguage(index, 'language', value)}
                                     placeholder="Idioma"
                                     className="font-semibold text-neutral-700 w-24"
                                 />
