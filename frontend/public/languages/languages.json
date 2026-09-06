@@ -1,0 +1,16 @@
+[
+  { "id": "python", "name": "Python", "icon": "/languages/logos/python.svg" },
+  { "id": "javascript", "name": "JavaScript", "icon": "/languages/logos/javascript.svg" },
+  { "id": "typescript", "name": "TypeScript", "icon": "/languages/logos/typescript.svg" },
+  { "id": "java", "name": "Java", "icon": "/languages/logos/java.svg" },
+  { "id": "cplusplus", "name": "C++", "icon": "/languages/logos/cplusplus.svg" },
+  { "id": "go", "name": "Go", "icon": "/languages/logos/go.svg" },
+  { "id": "rust", "name": "Rust", "icon": "/languages/logos/rust.svg" },
+  { "id": "php", "name": "PHP", "icon": "/languages/logos/php.svg" },
+  { "id": "ruby", "name": "Ruby", "icon": "/languages/logos/ruby.svg" },
+  { "id": "swift", "name": "Swift", "icon": "/languages/logos/swift.svg" },
+  { "id": "kotlin", "name": "Kotlin", "icon": "/languages/logos/kotlin.svg" },
+  { "id": "html5", "name": "HTML", "icon": "/languages/logos/html5.svg" },
+  { "id": "css", "name": "CSS", "icon": "/languages/logos/css.svg" },
+  { "id": "mysql", "name": "SQL", "icon": "/languages/logos/mysql.svg" }
+]
