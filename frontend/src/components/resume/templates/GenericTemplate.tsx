@@ -5,8 +5,6 @@ import type { UseResumeFormReturn } from '../../../hooks/useResumeForm';
 import { createEmptyEducation, createEmptyExperience, createEmptyLanguage } from '../../../hooks/useResumeForm';
 import type { BaseResumeData, EducationItem, ExperienceItem, LanguageItem } from '../types';
 
-import { useA4Overflow } from '../../../hooks/useA4Overflow';
-import { A4OverflowAdvertence } from '../../layout/A4OverflowAdvertence';
 import { InlineDatePicker } from '../ui/InlineDatePicker';
 import { InlineImageUpload } from '../ui/InlineImageUpload';
 import { InlineInput } from '../ui/InlineInput';
@@ -38,7 +36,6 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
     imagePreviewUrl,
 }) => {
     const { t } = useTranslation();
-    const { ref, overflowsA4 } = useA4Overflow();
 
     const updatePersonalInfo = (field: keyof BaseResumeData['personalInfo'], value: string) => {
         updateField('personalInfo', { ...data.personalInfo, [field]: value });
@@ -88,7 +85,7 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
 
     return (
         <>
-        <article ref={ref} className="bg-white text-neutral-900 p-10 max-w-[210mm] min-h-[297mm] mx-auto font-sans leading-[1.6] shadow-sm print:shadow-none">
+        <article className="bg-white text-neutral-900 p-10 max-w-[210mm] min-h-[297mm] mx-auto font-sans leading-[1.6] shadow-sm print:shadow-none">
 
             
             <header className="flex items-center gap-6 border-b border-neutral-200 pb-6 mb-6">
@@ -233,7 +230,7 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
                                         onChange={(e) => updateExperience(index, 'description', e.target.value)}
                                         placeholder={t('resume.placeholders.description', 'Describe tus responsabilidades y logros en el puesto...')}
                                         rows={2}
-                                        className="text-[12.5px] leading-[1.5]"
+                                        className="text-[12.5px] leading-normal"
                                     />
                                     <button
                                         type="button"
@@ -329,10 +326,6 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
             </SectionContainer>
 
         </article>
-
-        {overflowsA4 && (
-           <A4OverflowAdvertence />
-        )}
         </>
     );
 };
