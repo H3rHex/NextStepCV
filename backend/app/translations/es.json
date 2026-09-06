@@ -1,0 +1,35 @@
+{
+  "sections": {
+    "contact": "Contacto",
+    "profile": "Perfil",
+    "experience": "Experiencia",
+    "education": "Educación",
+    "languages": "Idiomas",
+    "technicalSkills": "Habilidades técnicas",
+    "languagesAndFrameworks": "Lenguajes y frameworks",
+    "toolsAndDatabases": "Herramientas y bases de datos",
+    "repositories": "Repositorios"
+  },
+  "labels": {
+    "email": "Email",
+    "phone": "Teléfono",
+    "location": "Ubicación",
+    "website": "Sitio web",
+    "github": "GitHub",
+    "from": "Desde",
+    "to": "Hasta",
+    "present": "Presente"
+  },
+  "proficiencies": {
+    "a1": "A1",
+    "a2": "A2",
+    "b1": "B1",
+    "b2": "B2",
+    "c1": "C1",
+    "c2": "C2",
+    "native": "Nativo",
+    "fluent": "Fluido",
+    "intermediate": "Intermedio",
+    "basic": "Básico"
+  }
+}

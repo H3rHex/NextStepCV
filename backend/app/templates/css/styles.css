@@ -1,0 +1,197 @@
+@page {
+    size: A4;
+    margin: 14mm 16mm;
+
+    @bottom-center {
+        content: counter(page) " / " counter(pages);
+        font-size: 7.5pt;
+        color: #a3a3a3;
+    }
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "DejaVu Sans", "Helvetica", "Arial", sans-serif;
+    font-size: 10pt;
+    line-height: 1.6;
+    color: #171717;
+    background: #ffffff;
+}
+
+a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Header */
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 6mm;
+    border-bottom: 1pt solid #e5e5e5;
+    padding-bottom: 6mm;
+    margin-bottom: 6mm;
+}
+
+.photo-wrap {
+    width: 24mm;
+    height: 24mm;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: #f5f5f5;
+    border: 1pt solid #d4d4d4;
+}
+
+.photo {
+    width: 100%;
+    height: 100%;
+}
+
+.header-body {
+    flex: 1;
+}
+
+.name {
+    font-size: 18pt;
+    font-weight: 700;
+    letter-spacing: -0.3pt;
+    color: #171717;
+}
+
+.headline {
+    font-size: 12pt;
+    font-weight: 500;
+    color: #525252;
+    margin-top: 2pt;
+}
+
+.contact {
+    margin-top: 4pt;
+}
+
+.contact-item {
+    display: inline;
+    font-size: 9pt;
+    color: #737373;
+}
+
+.contact-item + .contact-item::before {
+    content: " · ";
+    color: #a3a3a3;
+}
+
+/* Secciones */
+
+.section {
+    margin-bottom: 6mm;
+    page-break-inside: avoid;
+}
+
+.section-title {
+    font-size: 9pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8pt;
+    color: #a3a3a3;
+    margin-bottom: 3mm;
+}
+
+.profile-text {
+    font-size: 10pt;
+    color: #404040;
+}
+
+/* Items */
+
+.item {
+    margin-bottom: 5mm;
+    page-break-inside: avoid;
+}
+
+.item-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.item-title {
+    font-size: 10.5pt;
+    font-weight: 600;
+    color: #171717;
+}
+
+.item-title--edu {
+    font-size: 9.5pt;
+}
+
+.item-lang {
+    display: flex;
+    align-items: baseline;
+}
+
+.proficiency {
+    margin-left: 5pt;
+    font-size: 8.5pt;
+    color: #525252;
+}
+
+.item-sep {
+    color: #a3a3a3;
+    font-weight: 400;
+}
+
+.item-sub {
+    font-size: 9pt;
+    color: #525252;
+}
+
+.item-date {
+    font-size: 9pt;
+    color: #737373;
+    flex-shrink: 0;
+    padding-left: 4mm;
+}
+
+.highlights {
+    margin-top: 2pt;
+    padding-left: 0;
+}
+
+.highlights li {
+    list-style: none;
+    font-size: 9.5pt;
+    color: #404040;
+    margin-bottom: 2.5pt;
+}
+
+/* Skills */
+
+.tags {
+    margin-top: 2pt;
+}
+
+.tag {
+    display: inline-block;
+    padding: 1pt 5pt;
+    margin: 0 3pt 3pt 0;
+    font-size: 8.5pt;
+    color: #404040;
+    border: 0.5pt solid #d4d4d4;
+    border-radius: 2pt;
+    background: #f5f5f5;
+}
+
+.skills-col {
+    margin-bottom: 3mm;
+}

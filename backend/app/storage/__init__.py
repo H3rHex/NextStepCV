@@ -1,0 +1,1 @@
+"""Ciclo de vida de los PDFs generados: tokens de descarga y limpieza."""

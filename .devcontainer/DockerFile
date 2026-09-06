@@ -1,6 +1,10 @@
 FROM python:3.12-alpine
 
-RUN apk add --no-cache nodejs npm git curl bash shadow
+RUN apk add --no-cache nodejs npm git curl bash shadow \
+    pango cairo gdk-pixbuf \
+    font-dejavu fontconfig \
+    shared-mime-info \
+    jpeg libjpeg-turbo libpng
 RUN npm install -g corepack
 RUN corepack enable && corepack prepare pnpm@latest --activate
 RUN pip install --no-cache-dir uv

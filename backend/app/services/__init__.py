@@ -1,0 +1,1 @@
+"""Servicios de dominio: validación del currículo y generación de PDF."""

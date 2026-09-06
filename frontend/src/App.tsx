@@ -9,7 +9,7 @@ import type { ResumeSubmitPayload } from "./hooks/useResumeForm";
 import { getInitialResumeData } from "./hooks/useResumeForm";
 
 function App() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [currentType, setCurrentType] = useState<ResumeType>('general');
 
   const handleSave = async ({ formData, data, imageFile }: ResumeSubmitPayload<BaseResumeData>) => {
@@ -19,8 +19,10 @@ function App() {
       return;
     }
 
+    formData.set('lang', i18n.resolvedLanguage || 'es');
+
     try {
-      const response = await fetch(`${baseUrl}/api/resumes`, {
+      const response = await fetch(`${baseUrl}/api/v1/create_resume`, {
         method: 'POST',
         body: formData,
       });

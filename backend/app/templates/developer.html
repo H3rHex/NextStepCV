@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% from "macros.html" import date_range, bullet_list, highlight_list %}
+
+{% block sections %}
+    <section class="section">
+        <h2 class="section-title">{{ t('sections.technicalSkills') }}</h2>
+        <div class="skills-col">
+            <div class="item-sub">{{ t('sections.languagesAndFrameworks') }}</div>
+            {{ bullet_list(resume.technicalSkills.languagesAndFrameworks) }}
+        </div>
+        <div class="skills-col">
+            <div class="item-sub">{{ t('sections.toolsAndDatabases') }}</div>
+            {{ bullet_list(resume.technicalSkills.toolsAndDatabases) }}
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">{{ t('sections.experience') }}</h2>
+        {% for item in resume.experience %}
+        <div class="item">
+            <div class="item-head">
+                <div class="item-title">
+                    {{ item.role }}
+                    <span class="item-sep">-</span>
+                    {{ item.company }}
+                </div>
+                <span class="item-date">{{ date_range(item, t) }}</span>
+            </div>
+            {{ highlight_list(item.highlights) }}
+        </div>
+        {% endfor %}
+    </section>
+
+    {% if resume.repositories %}
+    <section class="section">
+        <h2 class="section-title">{{ t('sections.repositories') }}</h2>
+        {% for repo in resume.repositories %}
+        <div class="item">
+            <div class="item-head">
+                <div class="item-title">{{ repo.name }}</div>
+            </div>
+            <div class="item-sub">{{ repo.description }}</div>
+            {% if repo.url %}
+            <p class="profile-text">{{ repo.url }}</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </section>
+    {% endif %}
+
+    <section class="section">
+        <h2 class="section-title">{{ t('sections.education') }}</h2>
+        {% for item in resume.education %}
+        <div class="item">
+            <div class="item-head">
+                <div class="item-title item-title--edu">{{ item.degree }}</div>
+                <span class="item-date">{{ date_range(item, t) }}</span>
+            </div>
+            <div class="item-sub">{{ item.institution }}</div>
+        </div>
+        {% endfor %}
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">{{ t('sections.languages') }}</h2>
+        {% for item in resume.languages %}
+        <div class="item">
+            <div class="item-lang">
+                <span class="item-title">{{ item.language }}</span>
+                <span class="proficiency">{{ t('proficiencies.' + item.proficiency) }}</span>
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+{% endblock %}
