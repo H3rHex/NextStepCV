@@ -3,6 +3,12 @@
 {% from "macros.html" import date_range, bullet_list, highlight_list %}
 
 {% block header_extra %}
+    {% if resume.personalInfo.website %}
+    <div class="header-extra-row">
+        <span class="header-extra-label">{{ t('labels.website') }}</span>
+        <span class="header-extra-value"><a href="{{ resume.personalInfo.website }}">{{ resume.personalInfo.website }}</a></span>
+    </div>
+    {% endif %}
     {% if resume.socialMedia %}
     <ul class="contact driving-contact">
         {% for item in resume.socialMedia %}

@@ -95,6 +95,20 @@ ul {
     margin-top: 2pt;
 }
 
+.header-extra-row {
+    margin-top: 2pt;
+    font-size: 9pt;
+    color: #737373;
+}
+
+.header-extra-label {
+    color: #a3a3a3;
+}
+
+.header-extra-value {
+    color: #1d1d1d;
+}
+
 /* Secciones */
 
 .section {
