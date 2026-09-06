@@ -334,8 +334,15 @@ Amplía `BaseResumeData`:
 
 ```python
 TechnicalSkills:
-    languagesAndFrameworks: list[str]
+    programmingLanguages: list[str]
+    frameworks: list[str]
     toolsAndDatabases: list[str]
+
+SocialMediaItem:
+    id: str
+    name: str
+    username: str
+    url: str
 
 Repository:
     name: str
@@ -344,6 +351,7 @@ Repository:
 
 DeveloperResumeData(BaseResumeData):
     technicalSkills: TechnicalSkills
+    socialMedia: list[SocialMediaItem] = Field(default_factory=list)
     githubProfile: str = ""
     repositories: list[Repository] = Field(default_factory=list)
 ```
