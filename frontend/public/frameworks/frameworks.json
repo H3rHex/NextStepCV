@@ -1,16 +1,118 @@
 [
-  { "id": "react", "name": "React" },
-  { "id": "vuedotjs", "name": "Vue.js" },
-  { "id": "angular", "name": "Angular" },
-  { "id": "svelte", "name": "Svelte" },
-  { "id": "nextdotjs", "name": "Next.js" },
-  { "id": "django", "name": "Django" },
-  { "id": "flask", "name": "Flask" },
-  { "id": "fastapi", "name": "FastAPI" },
-  { "id": "spring", "name": "Spring" },
-  { "id": "laravel", "name": "Laravel" },
-  { "id": "express", "name": "Express" },
-  { "id": "nodedotjs", "name": "Node.js" },
-  { "id": "rubyonrails", "name": "Ruby on Rails" },
-  { "id": "dotnet", "name": ".NET" }
+  {
+    "id": "react",
+    "name": "React"
+  },
+  {
+    "id": "vuedotjs",
+    "name": "Vue.js"
+  },
+  {
+    "id": "angular",
+    "name": "Angular"
+  },
+  {
+    "id": "svelte",
+    "name": "Svelte"
+  },
+  {
+    "id": "nextdotjs",
+    "name": "Next.js"
+  },
+  {
+    "id": "django",
+    "name": "Django"
+  },
+  {
+    "id": "flask",
+    "name": "Flask"
+  },
+  {
+    "id": "fastapi",
+    "name": "FastAPI"
+  },
+  {
+    "id": "spring",
+    "name": "Spring"
+  },
+  {
+    "id": "laravel",
+    "name": "Laravel"
+  },
+  {
+    "id": "express",
+    "name": "Express.js"
+  },
+  {
+    "id": "nodedotjs",
+    "name": "Node.js"
+  },
+  {
+    "id": "rubyonrails",
+    "name": "Ruby on Rails"
+  },
+  {
+    "id": "dotnet",
+    "name": ".NET"
+  },
+  {
+    "id": "langchain",
+    "name": "LangChain"
+  },
+  {
+    "id": "langgraph",
+    "name": "LangGraph"
+  },
+  {
+    "id": "langfuse",
+    "name": "Langfuse"
+  },
+  {
+    "id": "agno",
+    "name": "Agno"
+  },
+  {
+    "id": "llamaindex",
+    "name": "LlamaIndex"
+  },
+  {
+    "id": "pytorch",
+    "name": "PyTorch"
+  },
+  {
+    "id": "tensorflow",
+    "name": "TensorFlow"
+  },
+  {
+    "id": "huggingface",
+    "name": "Hugging Face"
+  },
+  {
+    "id": "crewai",
+    "name": "CrewAI"
+  },
+  {
+    "id": "autogen",
+    "name": "AutoGen"
+  },
+  {
+    "id": "dspy",
+    "name": "DSPy"
+  },
+  {
+    "id": "vectorstores",
+    "name": "Chroma / Pinecone / Qdrant"
+  },
+  {
+    "id": "nestjs",
+    "name": "NestJS"
+  },
+  {
+    "id": "tailwind",
+    "name": "Tailwind CSS"
+  },
+  {
+    "id": "bootstrap",
+    "name": "Bootstrap"
+  }
 ]

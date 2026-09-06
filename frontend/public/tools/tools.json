@@ -1,44 +1,166 @@
 [
-  { "id": "github", "name": "GitHub" },
-  { "id": "gitlab", "name": "GitLab" },
-  { "id": "bitbucket", "name": "Bitbucket" },
-  { "id": "git", "name": "Git" },
-  { "id": "aws", "name": "AWS" },
-  { "id": "azure", "name": "Azure" },
-  { "id": "gcp", "name": "Google Cloud" },
-  { "id": "firebase", "name": "Firebase" },
-  { "id": "vercel", "name": "Vercel" },
-  { "id": "netlify", "name": "Netlify" },
-  { "id": "docker", "name": "Docker" },
-  { "id": "kubernetes", "name": "Kubernetes" },
-  { "id": "terraform", "name": "Terraform" },
-  { "id": "ansible", "name": "Ansible" },
-  { "id": "jenkins", "name": "Jenkins" },
-  { "id": "githubactions", "name": "GitHub Actions" },
-  { "id": "gitlabci", "name": "GitLab CI" },
-  { "id": "prometheus", "name": "Prometheus" },
-  { "id": "grafana", "name": "Grafana" },
-  { "id": "nginx", "name": "Nginx" },
-  { "id": "linux", "name": "Linux" },
-  { "id": "mongodb", "name": "MongoDB" },
-  { "id": "postgresql", "name": "PostgreSQL" },
-  { "id": "mysql", "name": "MySQL" },
-  { "id": "sqlite", "name": "SQLite" },
-  { "id": "mariadb", "name": "MariaDB" },
-  { "id": "redis", "name": "Redis" },
-  { "id": "elasticsearch", "name": "Elasticsearch" },
-  { "id": "rabbitmq", "name": "RabbitMQ" },
-  { "id": "apachekafka", "name": "Kafka" },
-  { "id": "figma", "name": "Figma" },
-  { "id": "jira", "name": "Jira" },
-  { "id": "notion", "name": "Notion" },
-  { "id": "postman", "name": "Postman" },
-  { "id": "swagger", "name": "Swagger/OpenAPI" },
-  { "id": "graphql", "name": "GraphQL" },
-  { "id": "restapi", "name": "REST API" },
-  { "id": "grpc", "name": "gRPC" },
-  { "id": "websocket", "name": "WebSocket" },
-  { "id": "microservices", "name": "Microservicios" },
-  { "id": "cicd", "name": "CI/CD" },
-  { "id": "agile", "name": "Agile/Scrum" }
+  {
+    "id": "git_github",
+    "name": "Git & GitHub"
+  },
+  {
+    "id": "gitlab",
+    "name": "GitLab"
+  },
+  {
+    "id": "bitbucket",
+    "name": "Bitbucket"
+  },
+  {
+    "id": "aws",
+    "name": "AWS"
+  },
+  {
+    "id": "azure",
+    "name": "Azure"
+  },
+  {
+    "id": "gcp",
+    "name": "Google Cloud"
+  },
+  {
+    "id": "firebase",
+    "name": "Firebase"
+  },
+  {
+    "id": "vercel",
+    "name": "Vercel"
+  },
+  {
+    "id": "netlify",
+    "name": "Netlify"
+  },
+  {
+    "id": "docker",
+    "name": "Docker"
+  },
+  {
+    "id": "kubernetes",
+    "name": "Kubernetes"
+  },
+  {
+    "id": "terraform",
+    "name": "Terraform"
+  },
+  {
+    "id": "ansible",
+    "name": "Ansible"
+  },
+  {
+    "id": "jenkins",
+    "name": "Jenkins"
+  },
+  {
+    "id": "githubactions",
+    "name": "GitHub Actions"
+  },
+  {
+    "id": "gitlabci",
+    "name": "GitLab CI"
+  },
+  {
+    "id": "prometheus",
+    "name": "Prometheus"
+  },
+  {
+    "id": "grafana",
+    "name": "Grafana"
+  },
+  {
+    "id": "nginx",
+    "name": "Nginx"
+  },
+  {
+    "id": "linux",
+    "name": "Linux"
+  },
+  {
+    "id": "mongodb",
+    "name": "MongoDB"
+  },
+  {
+    "id": "postgresql",
+    "name": "PostgreSQL"
+  },
+  {
+    "id": "mysql",
+    "name": "MySQL"
+  },
+  {
+    "id": "sqlite",
+    "name": "SQLite"
+  },
+  {
+    "id": "mariadb",
+    "name": "MariaDB"
+  },
+  {
+    "id": "redis",
+    "name": "Redis"
+  },
+  {
+    "id": "elasticsearch",
+    "name": "Elasticsearch"
+  },
+  {
+    "id": "rabbitmq",
+    "name": "RabbitMQ"
+  },
+  {
+    "id": "apachekafka",
+    "name": "Kafka"
+  },
+  {
+    "id": "figma",
+    "name": "Figma"
+  },
+  {
+    "id": "jira",
+    "name": "Jira"
+  },
+  {
+    "id": "notion",
+    "name": "Notion"
+  },
+  {
+    "id": "postman",
+    "name": "Postman"
+  },
+  {
+    "id": "swagger",
+    "name": "Swagger/OpenAPI"
+  },
+  {
+    "id": "graphql",
+    "name": "GraphQL"
+  },
+  {
+    "id": "restapi",
+    "name": "REST API"
+  },
+  {
+    "id": "grpc",
+    "name": "gRPC"
+  },
+  {
+    "id": "websocket",
+    "name": "WebSocket"
+  },
+  {
+    "id": "microservices",
+    "name": "Microservicios"
+  },
+  {
+    "id": "cicd",
+    "name": "CI/CD"
+  },
+  {
+    "id": "agile",
+    "name": "Agile/Scrum"
+  }
 ]

@@ -140,7 +140,7 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
                                 <button
                                     type="button"
                                     onClick={() => toggleExperienceDescription(index, true)}
-                                    className="cursor-pointer text-blue-600 hover:text-blue-800 font-medium transition-colors"
+                                        className="cursor-pointer text-blue-600 hover:text-blue-800  text-sm font-medium transition-colors"
                                 >
                                     {t('resume.ui.addDescription', '+ Añadir descripción')}
                                 </button>
