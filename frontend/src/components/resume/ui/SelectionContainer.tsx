@@ -5,6 +5,7 @@ interface SectionContainerProps {
     title: string;
     onAdd?: () => void;
     addLabel?: string;
+    className?: string;
     children?: React.ReactNode;
 }
 
@@ -12,11 +13,12 @@ export const SectionContainer: React.FC<SectionContainerProps> = ({
     title,
     onAdd,
     addLabel = 'resume.ui.add',
+    className = '',
     children,
 }) => {
     const { t } = useTranslation();
     return (
-        <section className="mb-6">
+        <section className={`mb-5 ${className}`}>
             <div className="flex justify-between items-center mb-3">
                 <h2 className="text-xs font-bold uppercase tracking-wider text-neutral-400">
                     {title}

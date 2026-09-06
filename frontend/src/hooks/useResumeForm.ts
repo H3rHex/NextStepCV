@@ -139,7 +139,7 @@ export function useResumeForm<T extends AnyResumeData>({
     setData(prev => ({ ...prev, [field]: value }));
   }, []);
   
-  const updateNestedField = useCallback((
+const updateNestedField = useCallback((
     field: 'experience' | 'education' | 'languages' | 'repositories', 
     index: number, 
     nestedField: string, 
@@ -152,7 +152,7 @@ export function useResumeForm<T extends AnyResumeData>({
       ),
     }));
   }, []);
- 
+  
   const updateArrayField = useCallback(<K extends keyof T>(field: K, value: T[K]) => {
     setData(prev => ({ ...prev, [field]: value }));
   }, []);
@@ -254,7 +254,8 @@ export function createEmptyLanguage(): BaseResumeData['languages'][0] {
 
 export function createEmptyDeveloperSkills(): DeveloperResumeData['technicalSkills'] {
   return {
-    languagesAndFrameworks: [],
+    programmingLanguages: [],
+    frameworks: [],
     toolsAndDatabases: [],
   };
 }
@@ -263,6 +264,15 @@ export function createEmptyRepository(): NonNullable<DeveloperResumeData['reposi
   return {
     name: '',
     description: '',
+    url: '',
+  };
+}
+
+export function createEmptySocialMediaItem(name = ''): NonNullable<DeveloperResumeData['socialMedia']>[0] {
+  return {
+    id: crypto.randomUUID(),
+    name,
+    username: '',
     url: '',
   };
 }
@@ -292,7 +302,8 @@ export function getInitialResumeData(type: 'general' | 'developer'): AnyResumeDa
       ...base,
       technicalSkills: createEmptyDeveloperSkills(),
       githubProfile: '',
-      repositories: [createEmptyRepository()],
+      repositories: [],
+      socialMedia: [],
     } as DeveloperResumeData;
   }
   

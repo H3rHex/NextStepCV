@@ -9,7 +9,12 @@
             "experience": "Work Experience",
             "education": "Education",
             "languages": "Languages",
-            "driving": "Driving licence"
+            "driving": "Driving licence",
+            "technicalSkills": "Technical skills",
+            "programmingLanguages": "Programming languages",
+            "frameworks": "Frameworks",
+            "toolsAndDatabases": "Tools and other skills",
+            "educationLanguages": "Education and languages"
         },
         "placeholders": {
             "firstName": "First Name",
@@ -43,7 +48,13 @@
             "licenses": "Licences",
             "profilePhotoAlt": "Profile photo",
             "photoLabel": "PHOTO",
-            "changePhoto": "Change"
+            "changePhoto": "Change",
+            "addSkill": "Add",
+            "searchSkill": "Search...",
+            "done": "Done",
+            "website": "Web",
+            "addSocialMedia": "+ Add social media",
+            "socialUsername": "username"
         },
         "image": {
             "change": "Change",

@@ -64,12 +64,19 @@ DEVELOPER_JSON = {
         "summary": "Desarrollador full-stack con 6 años de experiencia construyendo aplicaciones web escalables con Python y TypeScript, especializado en APIs y automatización de procesos.",
     },
     "technicalSkills": {
-        "languagesAndFrameworks": [
+        "programmingLanguages": [
             "Python",
             "TypeScript",
+            "Java",
+            "Go",
+            "JavaScript",
+        ],
+        "frameworks": [
             "FastAPI",
-            "React",
             "Django",
+            "React",
+            "Next.js",
+            "Angular",
         ],
         "toolsAndDatabases": [
             "PostgreSQL",
@@ -78,6 +85,20 @@ DEVELOPER_JSON = {
             "GitHub Actions",
         ],
     },
+    "socialMedia": [
+        {
+            "id": "social-1",
+            "name": "GitHub",
+            "username": "carlosg",
+            "url": "https://github.com/carlosg",
+        },
+        {
+            "id": "social-2",
+            "name": "LinkedIn",
+            "username": "carlosg",
+            "url": "https://linkedin.com/in/carlosg",
+        },
+    ],
     "githubProfile": "https://github.com/carlosg",
     "repositories": [
         {

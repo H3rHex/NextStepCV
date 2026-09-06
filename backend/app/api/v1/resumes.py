@@ -24,10 +24,11 @@ router = APIRouter(prefix=API_PREFIX, tags=["resumes"])
 async def create_resume(
     data: str = Form(...),
     lang: str | None = Form(default=None),
+    resume_type: str | None = Form(default=None),
     profile_image: UploadFile | None = File(default=None),
 ) -> dict[str, str]:
     try:
-        resume = parse_payload(data)
+        resume = parse_payload(data, resume_type=resume_type)
     except ValueError as exc:
         raise HTTPException(status_code=422, detail="The field data is not valid JSON") from exc
 

@@ -95,10 +95,24 @@ ul {
     margin-top: 2pt;
 }
 
+.header-extra-row {
+    margin-top: 2pt;
+    font-size: 9pt;
+    color: #737373;
+}
+
+.header-extra-label {
+    color: #a3a3a3;
+}
+
+.header-extra-value {
+    color: #1d1d1d;
+}
+
 /* Secciones */
 
 .section {
-    margin-bottom: 6mm;
+    margin-bottom: 5mm;
     page-break-inside: avoid;
 }
 
@@ -126,7 +140,7 @@ ul {
 /* Items */
 
 .item {
-    margin-bottom: 5mm;
+    margin-bottom: 4mm;
     page-break-inside: avoid;
 }
 
@@ -201,4 +215,76 @@ ul {
 
 .skills-col {
     margin-bottom: 3mm;
+}
+
+/* Skills en línea (escritura compacta) */
+
+.skills-row {
+    margin-bottom: 3pt;
+}
+
+.skills-row .tags {
+    display: inline;
+    margin-top: 0;
+}
+
+.skills-label {
+    font-size: 9pt;
+    color: #525252;
+}
+
+/* Dos columnas (educación + idiomas) */
+
+.two-col {
+    display: flex;
+    gap: 6mm;
+}
+
+.col {
+    flex: 1;
+    min-width: 0;
+}
+
+.col--wide {
+    flex: 3;
+}
+
+.col--narrow {
+    flex: 2;
+}
+
+.col-title {
+    font-size: 8.5pt;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5pt;
+    color: #737373;
+    margin-bottom: 2.5mm;
+}
+
+/* Educación: fecha bajo el título */
+
+.item-date--edu {
+    display: block;
+    padding-left: 0;
+    margin-top: 1pt;
+}
+
+.item-sub--edu {
+    margin-top: 1pt;
+}
+
+/* Idiomas: peso visual menor */
+
+.lang-item {
+    margin-bottom: 2mm;
+}
+
+.lang-item .item-title {
+    font-size: 8.5pt;
+    font-weight: 500;
+}
+
+.lang-item .proficiency {
+    font-size: 8pt;
 }
