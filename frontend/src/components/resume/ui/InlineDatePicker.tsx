@@ -21,7 +21,7 @@ export const InlineDatePicker: React.FC<InlineDatePickerProps> = ({
 
     const endInputType = isEndFocused || (endDate && endDate !== 'present') ? 'month' : 'text';
 
-    const inputBaseClass = "bg-transparent hover:bg-neutral-50/80 border border-transparent hover:border-neutral-200 focus:border-blue-500 focus:bg-white px-1 py-0 rounded outline-none text-center h-6 transition-all w-[110px]";
+    const inputBaseClass = "bg-transparent hover:bg-neutral-50/80 border border-transparent hover:border-neutral-200 focus:border-blue-500 focus:bg-white px-1 py-0 rounded outline-none text-center h-6 transition-all w-[110px] cursor-pointer";
 
     return (
         <div className={`flex items-center gap-1 text-xs text-neutral-500 shrink-0 ${className}`}>

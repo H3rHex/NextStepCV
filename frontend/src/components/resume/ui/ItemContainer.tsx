@@ -14,7 +14,7 @@ export const ItemContainer: React.FC<ItemContainerProps> = ({ onRemove, children
                     onClick={onRemove}
                     type="button"
                     title="resume.ui.remove"
-                    className="absolute -right-6 top-1/2 -translate-y-1/2 text-red-400 hover:text-red-600 opacity-0 group-hover:opacity-100 text-xs transition-opacity p-1"
+                    className="absolute -right-6 top-1/2 -translate-y-1/2 text-red-400 hover:text-red-600 opacity-0 group-hover:opacity-100 text-xs transition-opacity p-1 cursor-pointer"
                 >
                     ✕
                 </button>

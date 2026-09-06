@@ -140,7 +140,7 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
 
                     {data.showDriving ? (
                         <div className="flex flex-row flex-wrap items-center gap-x-3 gap-y-1 pt-1 text-xs">
-                            <label className="flex items-center gap-1.5 text-neutral-700">
+                            <label className="flex items-center gap-1.5 text-neutral-700 cursor-pointer">
                                 <input
                                     type="checkbox"
                                     checked={!!data.hasCar}
@@ -150,23 +150,25 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
                                 {t('resume.ui.hasCar', 'Tengo coche')}
                             </label>
                             <span className="text-neutral-400">{t('resume.ui.licenses', 'Permisos')}:</span>
-                            {DRIVING_LICENSE_TYPES.map((license) => {
-                                const active = (data.drivingLicenses ?? []).includes(license);
-                                return (
-                                    <button
-                                        key={license}
-                                        type="button"
-                                        onClick={() => toggleDrivingLicense(license)}
-                                        className={`px-1 py-0 rounded border transition-colors ${active ? 'bg-blue-600 text-white border-blue-600' : 'bg-neutral-50 text-neutral-700 border-neutral-200 hover:border-blue-300'}`}
-                                    >
-                                        {license}
-                                    </button>
-                                );
-                            })}
+                            <div>
+                                {DRIVING_LICENSE_TYPES.map((license) => {
+                                    const active = (data.drivingLicenses ?? []).includes(license);
+                                    return (
+                                        <button
+                                            key={license}
+                                            type="button"
+                                            onClick={() => toggleDrivingLicense(license)}
+                                            className={`cursor-pointer px-1 py-0 rounded border transition-colors ${active ? 'bg-blue-600 text-white border-blue-600' : 'bg-neutral-50 text-neutral-700 border-neutral-200 hover:border-blue-300'}`}
+                                        >
+                                            {license}
+                                        </button>
+                                    );
+                                })}
+                            </div>
                             <button
                                 type="button"
                                 onClick={() => toggleDriving(false)}
-                                className="text-neutral-400 hover:text-neutral-600 underline transition-colors"
+                                className="text-neutral-400 hover:text-neutral-600 underline transition-colors cursor-pointer"
                             >
                                 {t('resume.ui.removeDriving', 'Quitar')}
                             </button>
@@ -175,7 +177,7 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
                         <button
                             type="button"
                             onClick={() => toggleDriving(true)}
-                            className="pt-1 text-xs text-blue-600 hover:text-blue-800 font-medium transition-colors"
+                            className="pt-1 text-xs text-blue-600 hover:text-blue-800 font-medium transition-colors cursor-pointer"
                         >
                             {t('resume.ui.addDriving', '+ Añadir conducción')}
                         </button>
@@ -202,7 +204,7 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
                 <div className="space-y-4">
                     {data.experience.map((exp: ExperienceItem, index: number) => (
                         <ItemContainer key={exp.id} onRemove={() => removeItem('experience', index)}>
-                            <div className="flex justify-between items-baseline gap-4 text-[12.5px]">
+                            <div className="flex justify-between items-baseline gap-4 text-[12.5px] mb-3">
                                 <div className="flex gap-1 font-semibold text-neutral-900 flex-1 items-baseline">
                                     <InlineInput
                                         value={exp.role}
@@ -224,7 +226,7 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
                                 />
                             </div>
                             {exp.showDescription ? (
-                                <>
+                                <div>
                                     <InlineTextArea
                                         value={exp.description ?? ''}
                                         onChange={(e) => updateExperience(index, 'description', e.target.value)}
@@ -235,16 +237,16 @@ export const GenericTemplate: React.FC<GenericTemplateProps> = ({
                                     <button
                                         type="button"
                                         onClick={() => toggleExperienceDescription(index, false)}
-                                        className="text-xs text-neutral-500 hover:text-neutral-700 transition-colors"
+                                        className="cursor-pointer text-red-500 text-xs hover:text-red-700 transition-colors"
                                     >
                                         {t('resume.ui.removeDescription', '- Quitar descripción')}
                                     </button>
-                                </>
+                                </div>
                             ) : (
                                 <button
                                     type="button"
                                     onClick={() => toggleExperienceDescription(index, true)}
-                                    className="text-xs text-blue-600 hover:text-blue-800 font-medium transition-colors"
+                                    className="cursor-pointer text-blue-600 hover:text-blue-800 font-medium transition-colors"
                                 >
                                     {t('resume.ui.addDescription', '+ Añadir descripción')}
                                 </button>
